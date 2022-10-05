@@ -1,0 +1,38 @@
+
+// Node modules CSS
+@import 'react-toastify/dist/ReactToastify.css';
+@import 'material-icons/iconfont/filled.css';
+@import 'material-icons/iconfont/outlined.css';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif, monospace;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  color: var(--theme-ui-colors-grey6);
+  font-weight: 300;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}

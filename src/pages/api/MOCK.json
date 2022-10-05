@@ -1,0 +1,332 @@
+{
+  "albumCollection": {
+    "total": 17,
+    "items": [
+      {
+        "title": "Sydän",
+        "sys": { "id": "4st9KENPiwVGKGy0K6j1V2" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2021-11-19T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/1jnPkfwipgFH17JHo5ECiV/98ed710a66229f4e59bd7ec99214c24c/jtsa_sydan.jpg?w=300&h=300"
+        },
+        "reissue": false,
+        "ids": ["PINKD16"],
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Janne Tapion Sisäinen Avaruus" }
+      },
+      {
+        "title": "Ruosteen aika",
+        "sys": { "id": "7yQTvOMNkwE8KWIfruukcO" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2021-10-08T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/5tX9ngEJ6h3ieDPE1AzNQO/5dc1cd530e65cfc4725f8809fded075f/jtsa_ruosteen-aika.jpg?w=300&h=300"
+        },
+        "reissue": false,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Janne Tapion Sisäinen Avaruus" }
+      },
+      {
+        "title": "Venetsialaiset",
+        "sys": { "id": "62LOc5WM85fDSSJ03rCapf" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2021-08-20T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/w7mRpkn9uCdQO1kIRBhBO/314e40f09e3c8afb8acc34e58ff82417/jmatkala_venetsialaiset.png?w=300&h=300"
+        },
+        "reissue": false,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "J.Matkala" }
+      },
+      {
+        "title": "Onnellinen?",
+        "sys": { "id": "2tFNo9KWkqx2dl74WFmIdY" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2021-05-07T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/3mZin8xjNqF25yjRoornSD/111535c0aa730c7b19d3bf32d92e592a/jtsa_s4.jpg?w=300&h=300"
+        },
+        "reissue": false,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Janne Tapion Sisäinen Avaruus" }
+      },
+      {
+        "title": "Nowadays",
+        "sys": { "id": "6HBmuRbPkfUbweqLCDtwcw" },
+        "type": "ep",
+        "description": null,
+        "releasedAt": "2021-04-23T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/1WVK3C9Ka5doT6g2iZmjkw/99575c284bc5a095b813400a4837ae0e/image.png?w=300&h=300"
+        },
+        "reissue": true,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "All Surfaces" }
+      },
+      {
+        "title": "Graceland Sessions",
+        "sys": { "id": "7uB1fyvKl1recyVcRetNJ2" },
+        "type": "ep",
+        "description": null,
+        "releasedAt": "2021-04-17T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/6u2Yr7uRSuVHuXjR2c9HWd/83fbdeda5a154e0beedcdca56223714e/image.png?w=300&h=300"
+        },
+        "reissue": true,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Supernova Crush" }
+      },
+      {
+        "title": "The Livingroom Sessions",
+        "sys": { "id": "2MGz4Pie4fCZyasq9orNdg" },
+        "type": "ep",
+        "description": null,
+        "releasedAt": "2021-04-17T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/5fc91V2HvuG8D0eR5gtwag/7e9a614a1fae1de53389169c4bbb2f90/image.png?w=300&h=300"
+        },
+        "reissue": true,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Supernova Crush" }
+      },
+      {
+        "title": "I Wanted To Touch Your Hear",
+        "sys": { "id": "2Ens1YAKBmrk0ItITHw6Ra" },
+        "type": "album",
+        "description": null,
+        "releasedAt": "2021-01-01T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/47HRwYSSC5iCS3aAkMrOXL/5c326fbb8a93b1887c38088979daa35d/image.png?w=300&h=300"
+        },
+        "reissue": false,
+        "ids": null,
+        "formats": ["cd", "digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Jeremy Andrew" }
+      },
+      {
+        "title": "Pohjaan painan pimeän pään",
+        "sys": { "id": "5O1pKdTO0mVm3cALrB8Tsq" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2020-11-20T00:00:00.000+02:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/4EULRbQV3ms2Mcw9A9FbRC/258981963707bc6d7e8709bdc255f34d/image.png?w=300&h=300"
+        },
+        "reissue": null,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Janne Tapion Sisäinen Avaruus" }
+      },
+      {
+        "title": "Valoon Päin",
+        "sys": { "id": "4NWqu1F8eo2MbmzXCULuRH" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2020-11-11T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/RMxMQXSwEK6a2oszgeCUq/e799923174bdc6e2314a70a66306126e/jmatkala_s2.jpeg?w=300&h=300"
+        },
+        "reissue": false,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": "https://open.spotify.com/track/5VIxmYOl8TyKdiSd0RwGzG?si=I_WSNkwwRPy67LKI--w4NA",
+        "bandcamp": "https://isopinkki.bandcamp.com/track/valoon-p-in",
+        "tidal": null,
+        "artist": { "name": "J.Matkala" }
+      },
+      {
+        "title": "Kapteeni",
+        "sys": { "id": "5pJkmHYdoJ8FyyW4xLACzE" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2020-08-07T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/6Etsj1YhOyeiHOGFy6I4sZ/d3c16b5742f02e2dc0783c983cc6891d/image.png?w=300&h=300"
+        },
+        "reissue": null,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Janne Tapion Sisäinen Avaruus" }
+      },
+      {
+        "title": "Simple Math",
+        "sys": { "id": "73BGjvmPa7B1w6v0aukc0A" },
+        "type": "album",
+        "description": null,
+        "releasedAt": "2020-06-06T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/E3QVu1FPjaBP5VGXWSo4z/580eb9c4d04afbe460346bcbad202b7f/image.png?w=300&h=300"
+        },
+        "reissue": null,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Untogethers" }
+      },
+      {
+        "title": "Roots",
+        "sys": { "id": "7tPYyz8zLnHfqllruCIaGr" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2020-04-10T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/3GSlc6jqPqe1ilOnSON6GT/c2491b1160717c1f73be5409f084bd06/image.png?w=300&h=300"
+        },
+        "reissue": null,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Untogethers" }
+      },
+      {
+        "title": "Järven rantaan vie moottorie",
+        "sys": { "id": "1OrrkE3FFUdZisHqBeqHCX" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2020-03-06T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/5bxsUnC73wRWLT7WJJ6iqB/31ac30a603b27185e98a72396c3fbf52/jtsa_s1.jpg?w=300&h=300"
+        },
+        "reissue": null,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Janne Tapion Sisäinen Avaruus" }
+      },
+      {
+        "title": "Crumbling Heart",
+        "sys": { "id": "10hJFe2tOsBfNLOcpMF7iN" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2020-02-28T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/5Gtfl0cdIIu28YgXJtdyQO/e5017564c3e4022a3a947b2cf62a1f6f/image.png?w=300&h=300"
+        },
+        "reissue": null,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Untogethers" }
+      },
+      {
+        "title": "Mennään metsässä naimisiin",
+        "sys": { "id": "7iJD2L2Q42wXceR7FXyZso" },
+        "type": "single",
+        "description": null,
+        "releasedAt": "2020-01-15T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/32dM5V0CeywU9oi8KmqdL4/06c2cb880645062cbdf203daae0fadd9/image.png?w=300&h=300"
+        },
+        "reissue": null,
+        "ids": null,
+        "formats": ["digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Kaide Luukkonen & Lupaus" }
+      },
+      {
+        "title": "Janne Tapion Sisäinen Avaruus",
+        "sys": { "id": "2sLC69ydCfoa4PvBXd2qlP" },
+        "type": "album",
+        "description": {
+          "json": {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "content": [
+                  {
+                    "data": {},
+                    "marks": [],
+                    "value": "Test",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          }
+        },
+        "releasedAt": "2017-10-20T00:00:00.000+03:00",
+        "featuredImage": {
+          "url": "https://images.ctfassets.net/b62ehoymm0ds/1YwF56cxLywr2vlaW94N7d/26b03fabdae1f86b0f801a0fe0a8b796/jtsa1.jpg?w=300&h=300"
+        },
+        "reissue": false,
+        "ids": ["PINKCD1", "PINKLP1"],
+        "formats": ["vinyl", "cd", "digital"],
+        "ean": null,
+        "spotify": null,
+        "bandcamp": null,
+        "tidal": null,
+        "artist": { "name": "Janne Tapion Sisäinen Avaruus" }
+      }
+    ]
+  }
+}

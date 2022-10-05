@@ -1,0 +1,28 @@
+{
+  "common": {
+    "format": {
+      "cd": "CD",
+      "digital": "Digi",
+      "vinyl": "LP"
+    },
+    "type": {
+      "album": "Albumi",
+      "single": "Single",
+      "ep": "EP"
+    }
+  },
+  "pages": {
+    "index": {
+      "title": "Julkaisut",
+      "fetchingMore": "Siirrytään ajassa taaksepäin..",
+      "loadMore": "Siirry ajassa taaksepäin",
+      "startOfTimeline": "Big bang"
+    },
+    "singleAlbum": {
+      "catalogId": "Katalogi #",
+      "releaseDate": "Julkaisupvm.",
+      "returnToIndex": "Palaa etusivulle",
+      "ean": "EAN"
+    }
+  }
+}
