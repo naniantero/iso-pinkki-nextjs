@@ -64,7 +64,6 @@ const SingleAlbumPage: React.FC<NextPage> = (props) => {
       value: <Date includeYear date={data?.releasedAt} />,
     },
   ];
-  console.log(data)
 
   return (
     <CommonLayout title={data?.title ?? '-'}>

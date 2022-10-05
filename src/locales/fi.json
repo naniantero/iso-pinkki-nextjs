@@ -24,5 +24,13 @@
       "returnToIndex": "Palaa etusivulle",
       "ean": "EAN"
     }
+  },
+  "toasts": {
+    "error": {
+      "hooks": {
+        "useAlbums": "Julkaisuiden haku epäonnistui",
+        "useSingleAlbum": "Julkaisun haku epäonnistui"
+      }
+    }
   }
 }

@@ -1,4 +1,9 @@
-import { DEFAULT_STALE_TIME, QUERY_KEYS } from '@constants';
+import {
+  ALBUM_QUERY_PAGE_SIZE,
+  API_ROUTES,
+  DEFAULT_STALE_TIME,
+  QUERY_KEYS,
+} from '@constants';
 import { api } from '@services/api';
 import {
   useInfiniteQuery,
@@ -6,9 +11,8 @@ import {
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { API_ROUTES } from '../constants/path.constants';
-import { ALBUM_QUERY_PAGE_SIZE } from '../constants/query.constants';
 import { AxiosResponse } from 'axios';
+import ToastService from '../services/toast.service';
 
 /**
  * Hooks are used to display prefetched data in our page, without passing any data by props.
@@ -34,7 +38,9 @@ export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
         if (pages.length < lastPage) return pages.length;
         return undefined;
       },
-
+      onError: () => {
+        ToastService.showSuccess('toasts.error.hooks.useAlbums');
+      },
       staleTime: DEFAULT_STALE_TIME,
     }
   );
@@ -49,6 +55,9 @@ export const useSingleAlbum = (albumId: string): UseQueryResult<Album> => {
         .then((res: AxiosResponse<Album>) => res.data),
     {
       staleTime: DEFAULT_STALE_TIME,
+      onError: () => {
+        ToastService.showSuccess('toasts.error.hooks.useSingleAlbum');
+      },
     }
   );
 };
