@@ -1,5 +1,4 @@
 import { MetaTags } from '@components/AlbumItem';
-import { Icon } from '@components/Icon';
 import { Image } from '@components/Image';
 import { KeyValueList } from '@components/KeyValueList';
 import { CommonLayout } from '@components/Layout';
@@ -13,10 +12,9 @@ import { AxiosResponse } from 'axios';
 import { useSingleAlbum } from 'hooks';
 import { GetServerSideProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
-import { Box, Divider, Button } from 'theme-ui';
+import { Box } from 'theme-ui';
 import { useAlbumIds } from '../../hooks/album.hooks';
 
 const styles: SxStyleProp = {
@@ -38,6 +36,17 @@ const styles: SxStyleProp = {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
+  },
+  desktopPagination: {
+    display: ['none', 'flex'],
+    marginTop: 5,
+  },
+  mobilePagination: {
+    display: ['flex', 'none'],
+  },
+  paginationContainer: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 };
 
@@ -86,8 +95,20 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
     router.push(ROUTES.singleAlbum.replace('{albumId}', adjacentIds?.prevId));
   };
 
+  const renderPagination = (isMobile?: boolean) => (
+    <Box sx={styles.paginationContainer}>
+      <Pagination
+        sx={isMobile ? styles.mobilePagination : styles.desktopPagination}
+        nextId={adjacentIds?.nextId}
+        prevId={adjacentIds?.prevId}
+        onNextClick={onNextClick}
+        onPrevClick={onPrevClick}
+      />
+    </Box>
+  );
   return (
     <CommonLayout title={data?.title ?? '-'}>
+      {renderPagination(true)}
       <Box sx={{ width: '100%' }}>
         {data && (
           <Box mt={3}>
@@ -112,15 +133,8 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
             </Box>
           </Box>
         )}
-
-        <Pagination
-          mt={5}
-          nextId={adjacentIds?.nextId}
-          prevId={adjacentIds?.prevId}
-          onNextClick={onNextClick}
-          onPrevClick={onPrevClick}
-        />
       </Box>
+      {renderPagination()}
     </CommonLayout>
   );
 };

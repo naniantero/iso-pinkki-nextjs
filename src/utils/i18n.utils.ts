@@ -10,6 +10,6 @@ export const getLocalizedDate = (
 ) => {
   if (!date) return undefined;
   let format = 'dd.MM.';
-  if (includeYear) format = `${format}.yyyy`;
+  if (includeYear) format = `${format}yyyy`;
   return DateTime.fromISO(date as string).toFormat(format);
 };

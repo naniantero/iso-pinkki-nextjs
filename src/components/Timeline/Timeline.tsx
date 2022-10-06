@@ -26,7 +26,7 @@ const styles: SxStyleProp = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    width: 64,
+    width: ['inherit', 64],
   },
   timelineItem: {
     display: 'flex',
@@ -34,6 +34,7 @@ const styles: SxStyleProp = {
   },
   yearContent: {
     display: 'flex',
+    justifyContent: ['center', 'flex-start'],
   },
   itemMeta: {
     display: ['none', 'flex'],
@@ -46,7 +47,11 @@ const styles: SxStyleProp = {
     marginTop: -24,
   },
   yearHeading: {
-    marginRight: -32,
+    marginRight: [0, -24],
+    borderBottom: ['1px solid', 'none'],
+    borderColor: 'stroke',
+    paddingBottom: [1, 0],
+    display: 'block',
   },
   itemList: {
     width: '100%',
@@ -55,8 +60,12 @@ const styles: SxStyleProp = {
 export const Timeline: React.FC<Props> = ({ albums, year, onItemClick }) => {
   return (
     <Box sx={styles.yearContainer} className={`${year} year`} mb={3}>
-      <Box sx={styles.yearContent}>
-        <Box sx={styles.timelineContainer}>
+      <Box
+        sx={styles.yearContent}
+        className='timeline__year-content'
+        mb={[3, 0]}
+      >
+        <Box sx={styles.timelineContainer} className='timeline__container'>
           <Heading as='h2' sx={styles.yearHeading}>
             {year}
           </Heading>

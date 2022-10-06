@@ -86,7 +86,7 @@ const theme = {
         fontFamily: 'heading',
         lineHeight: 'heading',
         fontWeight: 'heading',
-        fontSize: [3, 4, 5],
+        fontSize: [1, 4, 5],
         fontWeight: 900,
       },
       h2: {

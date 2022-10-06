@@ -23,12 +23,13 @@ export const Pagination: React.FC<Props> = ({
   nextId,
   onPrevClick,
   onNextClick,
+  sx,
   ...rest
 }) => {
   const t = useTranslations('components.pagination');
 
   return (
-    <Box sx={styles.pagination} {...rest}>
+    <Box sx={{ ...styles.pagination, ...sx }} {...rest}>
       {prevId && (
         <Button variant='text' onClick={onPrevClick}>
           <Icon icon='chevron_left' />
