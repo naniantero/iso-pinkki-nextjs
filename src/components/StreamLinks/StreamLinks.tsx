@@ -42,7 +42,7 @@ const StreamLink: React.FC<StreamLinkProps> = ({ icon, href }) => {
   return (
     <Box sx={styles.iconContainer}>
       <Link href={href} target='_blank'>
-        <Image sx={styles.icon} src={`/${icon}.svg`} alt={icon} />
+        <Image sx={styles.icon} src={`/icons/${icon}.svg`} alt={icon} />
       </Link>
     </Box>
   );

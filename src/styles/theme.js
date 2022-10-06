@@ -33,7 +33,7 @@ const theme = {
   config: {
     useColorSchemeMediaQuery: false,
   },
-  space: [0, 4, 24, 32, 48, 64, 96, 128, 160, 192, 256],
+  space: [0, 4, 18, 32, 48, 64, 96, 128, 160, 192, 256],
   fonts: {
     body: 'Libre Baskerville, serif',
     heading: 'Fjalla one, sans-serif',
