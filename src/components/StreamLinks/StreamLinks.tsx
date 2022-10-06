@@ -23,10 +23,14 @@ const styles: SxStyleProp = {
     width: 48,
     height: 48,
     borderRadius: 64,
-    backgroundColor: 'text',
+    backgroundColor: 'primary',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    transition: 'background-color 0.15s ease-in',
+    '&:hover': {
+      backgroundColor: 'secondary',
+    },
   },
   icon: {
     maxWidth: 36,

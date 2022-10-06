@@ -28,6 +28,7 @@ const styles: SxStyleProp = {
     marginBottom: [3, 0],
     width: '100%',
     height: '100%',
+    borderRadius: 4,
   },
   imageContainer: {
     maxWidth: ['none', 400],
@@ -56,7 +57,8 @@ const styles: SxStyleProp = {
     justifyContent: 'center',
     paddingTop: 2,
     paddingBottom: 2,
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    borderRadius: '0 0 4px 4px',
   },
 };
 

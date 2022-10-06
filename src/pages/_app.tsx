@@ -46,7 +46,7 @@ function PinkkiApp({ Component, pageProps, messages, locale }: PinkkiAppProps) {
             <NextNProgress color={colors.pinkki} />
             <Component {...pageProps} />
           </Hydrate>
-          <ReactQueryDevtools />
+          {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
         </QueryClientProvider>
         <ToastContainer />
       </ThemeProvider>
