@@ -1,4 +1,4 @@
-import { lighten } from '@theme-ui/color';
+import { darken, lighten } from '@theme-ui/color';
 
 export const colors = {
   grey1: '#141414',
@@ -11,7 +11,7 @@ export const colors = {
   grey8: '#ACACAC',
   grey9: '#dbdbdb',
   grey10: '#F4F5F8',
-  accent: '#c83737;',
+  accent: '#c83737',
 };
 
 /**
@@ -23,7 +23,6 @@ export const colors = {
 export const breakpoints = [480, 768, 1024, 1440];
 
 const BUTTON_BASE = {
-  fontFamily: 'heading',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
@@ -34,7 +33,7 @@ const theme = {
   config: {
     useColorSchemeMediaQuery: false,
   },
-  space: [0, 4, 16, 24, 48, 64, 96, 128, 160, 192, 256],
+  space: [0, 4, 24, 32, 48, 64, 96, 128, 160, 192, 256],
   fonts: {
     body: 'Libre Baskerville, serif',
     heading: 'Fjalla one, sans-serif',
@@ -76,14 +75,20 @@ const theme = {
   buttons: {
     primary: {
       ...BUTTON_BASE,
+      fontFamily: 'heading',
     },
     text: {
       ...BUTTON_BASE,
       backgroundColor: 'transparent',
-      color: 'text',
+      color: 'secondary',
+      padding: 0,
+      margin: 0,
       '&:disabled': {
         color: lighten('text', 0.3),
         cursor: 'default',
+      },
+      '&:hover': {
+        color: darken(colors.accent, 0.2),
       },
     },
   },

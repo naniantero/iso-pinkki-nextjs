@@ -13,7 +13,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
-import { Box } from 'theme-ui';
+import { Box, Divider } from 'theme-ui';
 import { useAlbumIds } from '../../hooks/album.hooks';
 
 const styles: SxStyleProp = {
@@ -30,19 +30,13 @@ const styles: SxStyleProp = {
     height: '100%',
   },
   imageContainer: {
-    maxWidth: ['none', 300],
+    maxWidth: ['none', 400],
     marginRight: [0, 3],
     position: 'relative',
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
     marginBottom: [3, 0],
-  },
-  desktopPagination: {
-    display: ['none', 'flex'],
-  },
-  mobilePagination: {
-    display: ['flex', 'none'],
   },
   paginationContainer: {
     display: 'flex',
@@ -115,25 +109,18 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
     router.push(ROUTES.singleAlbum.replace('{albumId}', adjacentIds?.prevId));
   };
 
-  /**
-   * Renders a pagination block with alternating styles depending on isMobile param
-   */
-  const renderPagination = (isMobile?: boolean) => (
-    <Box sx={styles.paginationContainer}>
-      <Pagination
-        sx={isMobile ? styles.mobilePagination : styles.desktopPagination}
-        nextId={adjacentIds?.nextId}
-        prevId={adjacentIds?.prevId}
-        onNextClick={onNextClick}
-        onPrevClick={onPrevClick}
-      />
-    </Box>
-  );
-
   return (
     <CommonLayout title={data?.title ?? '-'}>
-      {renderPagination(true)}
       <Box sx={styles.wrapper} py={[3, 5]}>
+        <Box sx={styles.paginationContainer}>
+          <Pagination
+            nextId={adjacentIds?.nextId}
+            prevId={adjacentIds?.prevId}
+            onNextClick={onNextClick}
+            onPrevClick={onPrevClick}
+          />
+        </Box>
+        <Divider mb={3} />
         {data && (
           <Box sx={styles.infoContainer}>
             <Box sx={styles.imageContainer}>
@@ -160,7 +147,6 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
           </Box>
         )}
       </Box>
-      {renderPagination()}
     </CommonLayout>
   );
 };

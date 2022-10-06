@@ -13,13 +13,9 @@ interface Props extends BoxProps {
 const styles: SxStyleProp = {
   pagination: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
     alignItems: 'center',
-  },
-  separator: {
-    width: '1px',
-    height: 36,
-    backgroundColor: 'stroke',
   },
 };
 export const Pagination: React.FC<Props> = ({
@@ -35,11 +31,12 @@ export const Pagination: React.FC<Props> = ({
   return (
     <Box sx={{ ...styles.pagination, ...sx }} {...rest}>
       <Button variant='text' onClick={onPrevClick} disabled={!prevId}>
+        <Icon icon='chevron_left' color="secondary" />
         {t('previous')}
       </Button>
-      <Box sx={styles.separator} />
       <Button variant='text' onClick={onNextClick} disabled={!nextId}>
         {t('next')}
+        <Icon icon='chevron_right' color="secondary" />
       </Button>
     </Box>
   );

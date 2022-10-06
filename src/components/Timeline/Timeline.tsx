@@ -46,7 +46,7 @@ const styles: SxStyleProp = {
     marginTop: -3,
   },
   yearHeading: {
-    marginRight: [0, -3],
+    marginRight: [0, -24],
     borderBottom: ['1px solid', 'none'],
     borderColor: 'stroke',
     paddingBottom: [1, 0],
