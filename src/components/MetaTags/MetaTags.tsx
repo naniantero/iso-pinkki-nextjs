@@ -3,6 +3,8 @@ import { useTranslations } from 'next-intl';
 
 interface Props extends BoxProps {
   album: Album;
+  hideFormats?: boolean;
+  hideType?: boolean;
 }
 
 const styles: SxStyleProp = {
@@ -16,6 +18,7 @@ const styles: SxStyleProp = {
     color: 'white',
     fontWeight: 400,
     marginTop: 1,
+    maxHeight: 32,
   },
   type: {
     backgroundColor: 'grey3',
@@ -30,21 +33,29 @@ const styles: SxStyleProp = {
   },
 };
 
-export const MetaTags: React.FC<Props> = ({ album, sx, children, ...rest }) => {
+export const MetaTags: React.FC<Props> = ({
+  album,
+  sx,
+  children,
+  hideFormats,
+  hideType,
+  ...rest
+}) => {
   const ct = useTranslations('common');
 
   return (
     <Box sx={{ ...styles.container, ...sx }} {...rest}>
-      {album.type && (
+      {!hideType && album.type && (
         <Box as='span' sx={{ ...styles.tag, ...styles.type }}>
           {ct(`type.${album.type}`)}
         </Box>
       )}
-      {album.formats.map((format) => (
-        <Box as='span' sx={{ ...styles.tag, ...styles.format }} key={format}>
-          {ct(`format.${format}`)}
-        </Box>
-      ))}
+      {!hideFormats &&
+        album.formats.map((format) => (
+          <Box as='span' sx={{ ...styles.tag, ...styles.format }} key={format}>
+            {ct(`format.${format}`)}
+          </Box>
+        ))}
       {children}
     </Box>
   );

@@ -13,7 +13,7 @@ const styles = {
     width: '100%',
   },
   img: {
-    height: 80,
+    height: 64,
   },
 };
 

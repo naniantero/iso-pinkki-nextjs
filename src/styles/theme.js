@@ -1,3 +1,5 @@
+import { lighten } from '@theme-ui/color';
+
 export const colors = {
   grey1: '#141414',
   grey2: '#1d1d1d',
@@ -9,7 +11,7 @@ export const colors = {
   grey8: '#ACACAC',
   grey9: '#dbdbdb',
   grey10: '#F4F5F8',
-  pinkki: '#f73097',
+  accent: '#c83737;',
 };
 
 /**
@@ -19,6 +21,14 @@ export const colors = {
  * xl 1440
  */
 export const breakpoints = [480, 768, 1024, 1440];
+
+const BUTTON_BASE = {
+  fontFamily: 'heading',
+  cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
 
 const theme = {
   config: {
@@ -44,7 +54,7 @@ const theme = {
     text: colors.grey5,
     background: 'white',
     primary: colors.grey3,
-    secondary: colors.pinkki,
+    secondary: colors.accent,
     stroke: colors.grey9,
     darkStroke: colors.grey7,
     ...colors,
@@ -65,20 +75,16 @@ const theme = {
   },
   buttons: {
     primary: {
-      fontFamily: 'heading',
-      cursor: 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      ...BUTTON_BASE,
     },
     text: {
-      fontFamily: 'heading',
-      cursor: 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      ...BUTTON_BASE,
       backgroundColor: 'transparent',
       color: 'text',
+      '&:disabled': {
+        color: lighten('text', 0.3),
+        cursor: 'default',
+      },
     },
   },
   text: {

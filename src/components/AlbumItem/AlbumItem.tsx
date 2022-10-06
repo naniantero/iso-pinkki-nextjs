@@ -54,6 +54,9 @@ const styles: SxStyleProp = {
     minWidth: 200,
     justifyContent: 'flex-end',
   },
+  title: {
+    color: 'secondary'
+  }
 };
 
 export const AlbumItem: React.FC<Props> = ({ album, onClick, ...rest }) => {
@@ -74,7 +77,7 @@ export const AlbumItem: React.FC<Props> = ({ album, onClick, ...rest }) => {
       )}
       <Box sx={styles.albumContent}>
         <Box sx={styles.albumTextContent}>
-          <Heading as='h3'>{album.title}</Heading>
+          <Heading as='h3' sx={styles.title}>{album.title}</Heading>
           <Text>{album.artist.name}</Text>
         </Box>
         <MetaTags album={album} sx={styles.metaTags} />

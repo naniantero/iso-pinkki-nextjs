@@ -20,7 +20,7 @@ const styles: SxStyleProp = {
     width: '1px',
     height: 36,
     backgroundColor: 'stroke',
-  }
+  },
 };
 export const Pagination: React.FC<Props> = ({
   prevId,
@@ -34,19 +34,13 @@ export const Pagination: React.FC<Props> = ({
 
   return (
     <Box sx={{ ...styles.pagination, ...sx }} {...rest}>
-      {prevId && (
-        <Button variant='text' onClick={onPrevClick}>
-          <Icon icon='chevron_left' />
-          {t('previous')}
-        </Button>
-      )}
-      {nextId && prevId && <Box sx={styles.separator} />}
-      {nextId && (
-        <Button variant='text' onClick={onNextClick}>
-          {t('next')}
-          <Icon icon='chevron_right' />
-        </Button>
-      )}
+      <Button variant='text' onClick={onPrevClick} disabled={!prevId}>
+        {t('previous')}
+      </Button>
+      <Box sx={styles.separator} />
+      <Button variant='text' onClick={onNextClick} disabled={!nextId}>
+        {t('next')}
+      </Button>
     </Box>
   );
 };

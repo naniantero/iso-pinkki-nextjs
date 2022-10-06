@@ -24,7 +24,7 @@ export const KeyValueList: FC<Props> = ({ items, ...rest }) => {
       {items.map((item) => {
         if (item.value) {
           return (
-            <Grid key={item.key} columns={2}>
+            <Grid key={item.key} columns={2} sx={styles.grid}>
               <Box as='dt' mr={3} sx={styles.dt}>
                 {item.key}
               </Box>

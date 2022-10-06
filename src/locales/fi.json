@@ -22,7 +22,9 @@
       "catalogId": "Katalogi #",
       "releaseDate": "Julkaisupvm.",
       "returnToIndex": "Palaa etusivulle",
-      "ean": "EAN"
+      "ean": "EAN",
+      "format": "Formaatti",
+      "type": "Tyyppi"
     }
   },
   "components": {

@@ -53,7 +53,7 @@ function PinkkiApp({ Component, pageProps, messages, locale }: PinkkiAppProps) {
           <QueryClientProvider client={queryClient}>
             {/* Hydrate query cache */}
             <Hydrate state={pageProps.dehydratedState}>
-              <NextNProgress color={colors.pinkki} />
+              <NextNProgress color={colors.accent} />
               <Component {...pageProps} />
             </Hydrate>
             {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}

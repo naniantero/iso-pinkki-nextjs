@@ -1,10 +1,9 @@
 import { Image } from '@components/Image';
 import { KeyValueList } from '@components/KeyValueList';
 import { CommonLayout } from '@components/Layout';
-import { MetaTags } from '@components/MetaTags';
 import { Pagination } from '@components/Pagination';
 import { StreamLinks } from '@components/StreamLinks';
-import { Date, Heading, Text } from '@components/Typography';
+import { Date, Heading } from '@components/Typography';
 import { API_ROUTES, QUERY_KEYS, ROUTES } from '@constants';
 import { api } from '@services/api';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
@@ -21,10 +20,12 @@ const styles: SxStyleProp = {
   infoContainer: {
     display: 'flex',
     flexDirection: ['column', 'row'],
+    justifyContent: 'center',
   },
   featuredImage: {
     maxWidth: '100%',
     flex: 1,
+    borderRadius: 5,
     width: '100%',
     height: '100%',
   },
@@ -39,7 +40,6 @@ const styles: SxStyleProp = {
   },
   desktopPagination: {
     display: ['none', 'flex'],
-    marginTop: 5,
   },
   mobilePagination: {
     display: ['flex', 'none'],
@@ -48,12 +48,7 @@ const styles: SxStyleProp = {
     display: 'flex',
     justifyContent: 'center',
   },
-  streamLinks: {
-    justifyContent: 'center',
-    paddingTop: 2,
-    paddingBottom: 2,
-    backgroundColor: 'primary',
-  },
+  wrapper: {},
 };
 
 const SingleAlbumPage: React.FC<NextPage> = () => {
@@ -61,6 +56,7 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
   const { data } = useSingleAlbum(router.query.albumId as string);
   const { data: albumIds } = useAlbumIds();
   const t = useTranslations('pages.singleAlbum');
+  const ct = useTranslations('common');
 
   /**
    * Returns an adjacent album ids object based on current albumId
@@ -92,6 +88,14 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
     {
       key: t('releaseDate'),
       value: <Date includeYear date={data?.releasedAt} />,
+    },
+    {
+      key: t('format'),
+      value: data?.formats.map((format) => ct(`format.${format}`)).join(', '),
+    },
+    {
+      key: t('type'),
+      value: data?.type && ct(`type.${data.type}`),
     },
   ];
 
@@ -129,28 +133,29 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
   return (
     <CommonLayout title={data?.title ?? '-'}>
       {renderPagination(true)}
-      <Box sx={{ width: '100%' }}>
+      <Box sx={styles.wrapper} py={[3, 5]}>
         {data && (
-          <Box mt={3}>
-            <Box sx={styles.infoContainer}>
-              <Box sx={styles.imageContainer}>
-                <Image
-                  src={data?.featuredImage.url}
-                  alt={data?.title}
-                  sx={styles.featuredImage}
-                />
-                <StreamLinks album={data} sx={styles.streamLinks} />
-              </Box>
+          <Box sx={styles.infoContainer}>
+            <Box sx={styles.imageContainer}>
+              <Image
+                src={data?.featuredImage.url}
+                alt={data?.title}
+                sx={styles.featuredImage}
+              />
+            </Box>
 
-              <Box>
+            <Box sx={{ flex: 1 }}>
+              <Box mb={3}>
                 <Heading as='h1'>{data?.title}</Heading>
-                <Text mb={3}>{data?.artist.name}</Text>
-                <MetaTags album={data} my={3} />
-                <KeyValueList items={keyValueListItems} />
-                {data.description && (
-                  <Box dangerouslySetInnerHTML={{ __html: data.description }} />
-                )}
+                <Heading as='h3' mt={1} color='secondary' mb={3}>
+                  {data?.artist.name}
+                </Heading>
               </Box>
+              <KeyValueList items={keyValueListItems} />
+              {data.description && (
+                <Box dangerouslySetInnerHTML={{ __html: data.description }} />
+              )}
+              <StreamLinks album={data} mt={3} />
             </Box>
           </Box>
         )}

@@ -51,6 +51,7 @@ const styles: SxStyleProp = {
     borderColor: 'stroke',
     paddingBottom: [1, 0],
     display: 'block',
+    color: 'secondary'
   },
   itemList: {
     width: '100%',
