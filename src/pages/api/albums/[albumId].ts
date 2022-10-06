@@ -1,11 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import ContentfulService from '../../../services/contentful.service';
-import mock from '../MOCK.json';
-import { ALBUM_QUERY_PAGE_SIZE } from '../../../constants/query.constants';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
-const USE_MOCK = false;
-
+/**
+ * Fetches an album by ID
+ */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const {
     query: { albumId },

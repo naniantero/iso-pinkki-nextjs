@@ -24,8 +24,8 @@ export const breakpoints = [480, 768, 1024, 1440];
 const theme = {
   space: [0, 4, 16, 24, 48, 64, 96, 128, 160, 192, 256],
   fonts: {
-    body: 'PT Mono, system-ui, sans-serif',
-    heading: 'Nixie One, cursive',
+    body: 'Libre Baskerville, serif',
+    heading: 'Fjalla one, sans-serif',
     monospace: '"Roboto Mono", monospace',
   },
   fontSizes: [12, 14, 16, 18, 20, 28, 40, 64, 96],
@@ -61,6 +61,24 @@ const theme = {
   divider: {
     color: 'grey9',
   },
+  buttons: {
+    primary: {
+      fontFamily: 'heading',
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      fontFamily: 'heading',
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'transparent',
+      color: 'text',
+    },
+  },
   text: {
     heading: {
       h1: {
@@ -69,6 +87,7 @@ const theme = {
         lineHeight: 'heading',
         fontWeight: 'heading',
         fontSize: [3, 4, 5],
+        fontWeight: 900,
       },
       h2: {
         color: 'primary',

@@ -9,8 +9,6 @@ type IconType =
   | 'arrow_back_ios';
 
 const narrowIcons = [
-  'chevron_left',
-  'chevron_right',
   'arrow_back_ios',
 ] as IconType[];
 

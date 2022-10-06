@@ -25,6 +25,12 @@
       "ean": "EAN"
     }
   },
+  "components": {
+    "pagination": {
+      "next": "Seuraava",
+      "previous": "Edellinen"
+    }
+  },
   "toasts": {
     "error": {
       "hooks": {

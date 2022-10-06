@@ -14,7 +14,6 @@ const styles: SxStyleProp = {
     '& > *:not(:last-child)': {
       marginRight: 1
     },
-    justifyContent: 'center',
   },
   iconContainer: {
     '> a': {
@@ -24,7 +23,7 @@ const styles: SxStyleProp = {
     width: 48,
     height: 48,
     borderRadius: 64,
-    backgroundColor: 'primary',
+    backgroundColor: 'text',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

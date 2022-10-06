@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Box, Link } from 'theme-ui';
 
 interface Props {}

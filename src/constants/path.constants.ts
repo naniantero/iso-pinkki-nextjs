@@ -6,4 +6,5 @@ export const ROUTES = Object.freeze({
 export const API_ROUTES = Object.freeze({
   albums: '/api/albums',
   singleAlbum: '/api/albums/{albumId}',
+  albumIds: '/api/albums/ids'
 });

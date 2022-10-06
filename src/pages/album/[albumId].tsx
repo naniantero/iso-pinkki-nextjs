@@ -1,22 +1,23 @@
+import { MetaTags } from '@components/AlbumItem';
+import { Icon } from '@components/Icon';
+import { Image } from '@components/Image';
+import { KeyValueList } from '@components/KeyValueList';
 import { CommonLayout } from '@components/Layout';
+import { Pagination } from '@components/Pagination';
+import { StreamLinks } from '@components/StreamLinks';
 import { Date, Heading, Text } from '@components/Typography';
-import { QUERY_KEYS } from '@constants';
+import { API_ROUTES, QUERY_KEYS, ROUTES } from '@constants';
 import { api } from '@services/api';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useSingleAlbum } from 'hooks';
 import { GetServerSideProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { API_ROUTES, ROUTES } from '../../constants/path.constants';
-import { Box, Divider } from 'theme-ui';
-import { MetaTags } from '@components/AlbumItem';
-import { KeyValueList } from '@components/KeyValueList';
-import { Image } from '@components/Image';
 import Link from 'next/link';
-import { Icon } from '@components/Icon';
-import { StreamLinks } from '../../components/StreamLinks/StreamLinks';
+import { useRouter } from 'next/router';
+import React, { useMemo } from 'react';
+import { Box, Divider, Button } from 'theme-ui';
+import { useAlbumIds } from '../../hooks/album.hooks';
 
 const styles: SxStyleProp = {
   infoContainer: {
@@ -38,18 +39,28 @@ const styles: SxStyleProp = {
     justifyContent: 'center',
     flexDirection: 'column',
   },
-
-  backLink: {
-    display: 'flex',
-    alignItems: 'center',
-  },
 };
 
-const SingleAlbumPage: React.FC<NextPage> = (props) => {
+const SingleAlbumPage: React.FC<NextPage> = () => {
   const router = useRouter();
   const { data } = useSingleAlbum(router.query.albumId as string);
+  const { data: albumIds } = useAlbumIds();
   const t = useTranslations('pages.singleAlbum');
 
+  const adjacentIds = useMemo(() => {
+    if (!router.query.albumId || !albumIds?.length) return;
+    const currentAlbumIndex = albumIds?.findIndex(
+      (id) => id === router.query.albumId
+    );
+
+    return {
+      nextId: albumIds[currentAlbumIndex + 1],
+      prevId: albumIds[currentAlbumIndex - 1],
+    };
+  }, [albumIds, router.query.albumId]);
+  /**
+   * Album meta data displayed via KeyValueList
+   */
   const keyValueListItems = [
     {
       key: t('ean'),
@@ -65,14 +76,19 @@ const SingleAlbumPage: React.FC<NextPage> = (props) => {
     },
   ];
 
+  const onNextClick = () => {
+    if (!adjacentIds?.nextId) return;
+    router.push(ROUTES.singleAlbum.replace('{albumId}', adjacentIds?.nextId));
+  };
+
+  const onPrevClick = () => {
+    if (!adjacentIds?.prevId) return;
+    router.push(ROUTES.singleAlbum.replace('{albumId}', adjacentIds?.prevId));
+  };
+
   return (
     <CommonLayout title={data?.title ?? '-'}>
       <Box sx={{ width: '100%' }}>
-        <Text sx={styles.backLink} mb={3}>
-          <Icon icon='arrow_back_ios' mr={2} />
-          <Link href={ROUTES.index}>{t('returnToIndex')}</Link>
-        </Text>
-        <Divider />
         {data && (
           <Box mt={3}>
             <Box sx={styles.infoContainer}>
@@ -82,7 +98,6 @@ const SingleAlbumPage: React.FC<NextPage> = (props) => {
                   alt={data?.title}
                   sx={styles.featuredImage}
                 />
-                <StreamLinks album={data} sx={styles.streamLinks} mt={2} />
               </Box>
               <Box>
                 <Heading as='h1'>{data?.title}</Heading>
@@ -92,10 +107,19 @@ const SingleAlbumPage: React.FC<NextPage> = (props) => {
                 {data.description && (
                   <Box dangerouslySetInnerHTML={{ __html: data.description }} />
                 )}
+                <StreamLinks album={data} mt={3} />
               </Box>
             </Box>
           </Box>
         )}
+
+        <Pagination
+          mt={5}
+          nextId={adjacentIds?.nextId}
+          prevId={adjacentIds?.prevId}
+          onNextClick={onNextClick}
+          onPrevClick={onPrevClick}
+        />
       </Box>
     </CommonLayout>
   );
@@ -111,6 +135,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   await queryClient.prefetchQuery([QUERY_KEYS.singleAlbum, albumId], () =>
     api
       .get(API_ROUTES.singleAlbum.replace('{albumId}', albumId as string))
+      .then((res: AxiosResponse<AlbumCollection>) => res.data)
+  );
+
+  await queryClient.prefetchQuery([QUERY_KEYS.albumIds], () =>
+    api
+      .get(API_ROUTES.albumIds)
       .then((res: AxiosResponse<AlbumCollection>) => res.data)
   );
 

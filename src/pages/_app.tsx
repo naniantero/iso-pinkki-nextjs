@@ -1,10 +1,10 @@
-import '@fontsource/montserrat/300.css';
-import '@fontsource/montserrat/400.css';
-import '@fontsource/montserrat/600.css';
-import '@fontsource/nixie-one';
+import '@fontsource/libre-baskerville';
+import '@fontsource/fjalla-one';
+
 import {
-  Hydrate, QueryClient,
-  QueryClientProvider
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Settings } from 'luxon';
@@ -43,7 +43,7 @@ function PinkkiApp({ Component, pageProps, messages, locale }: PinkkiAppProps) {
         <QueryClientProvider client={queryClient}>
           {/* Hydrate query cache */}
           <Hydrate state={pageProps.dehydratedState}>
-            <NextNProgress color={colors.pinkki}/>
+            <NextNProgress color={colors.pinkki} />
             <Component {...pageProps} />
           </Hydrate>
           <ReactQueryDevtools />

@@ -17,6 +17,10 @@ import ToastService from '../services/toast.service';
 /**
  * Hooks are used to display prefetched data in our page, without passing any data by props.
  */
+
+/**
+ * Fetches all albums using infinite query
+ */
 export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
   return useInfiniteQuery(
     [QUERY_KEYS.albums],
@@ -46,6 +50,9 @@ export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
   );
 };
 
+/**
+ * Makes a single album query using an albumId
+ */
 export const useSingleAlbum = (albumId: string): UseQueryResult<Album> => {
   return useQuery(
     [QUERY_KEYS.singleAlbum, albumId],
@@ -58,6 +65,22 @@ export const useSingleAlbum = (albumId: string): UseQueryResult<Album> => {
       onError: () => {
         ToastService.showSuccess('toasts.error.hooks.useSingleAlbum');
       },
+    }
+  );
+};
+
+/**
+ * Makes a "all album IDs" query
+ */
+export const useAlbumIds = (): UseQueryResult<string[]> => {
+  return useQuery(
+    [QUERY_KEYS.albumIds],
+    () =>
+      api
+        .get(API_ROUTES.albumIds)
+        .then((res: AxiosResponse<Album>) => res.data),
+    {
+      staleTime: DEFAULT_STALE_TIME,
     }
   );
 };

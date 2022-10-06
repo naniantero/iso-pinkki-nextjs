@@ -5,6 +5,7 @@
 export const QUERY_KEYS = Object.freeze({
   albums: 'albums',
   singleAlbum: 'singleAlbum',
+  albumIds: 'albumIds',
 });
 
 export const DEFAULT_STALE_TIME = Infinity;
