@@ -29,6 +29,10 @@
     "pagination": {
       "next": "Seuraava",
       "previous": "Edellinen"
+    },
+    "fallbackError": {
+      "title": "Nyt ei mee hyvin",
+      "body": "Jotain tapahtui, ei tiedetä mitä."
     }
   },
   "toasts": {

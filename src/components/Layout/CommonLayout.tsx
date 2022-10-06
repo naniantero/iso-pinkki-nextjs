@@ -3,6 +3,7 @@ import { Box } from 'theme-ui';
 import { TopBar } from './TopBar';
 import { Footer } from './Footer';
 import { HtmlHead } from '@components/HtmlHead/HtmlHead';
+import { APP_ID } from '@constants';
 
 interface Props {
   children: ReactNode;
@@ -27,7 +28,7 @@ export const CommonLayout: React.FC<Props> = ({ children, title }) => {
   return (
     <>
       <HtmlHead title={title} />
-      <Box sx={styles.wrapper} className='layout__wrapper'>
+      <Box sx={styles.wrapper} className='layout__wrapper' id={APP_ID}>
         <TopBar />
         <Box as='main' sx={styles.main} py={3} px={[2, 3]}>
           {children}

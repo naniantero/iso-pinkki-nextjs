@@ -57,7 +57,6 @@ const IndexPage: React.FC<NextPage> = () => {
         albums: allAlbums.filter((album) => getReleaseYear(album) === year),
       }));
   }, [data]);
-
   /**
    * Fetches a new page when "load more" button is in the viewport
    */
