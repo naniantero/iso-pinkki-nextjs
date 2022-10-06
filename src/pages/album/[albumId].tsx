@@ -30,7 +30,7 @@ const styles: SxStyleProp = {
     height: '100%',
   },
   imageContainer: {
-    maxWidth: ['none', 400],
+    maxWidth: ['none', 300],
     marginRight: [0, 3],
     position: 'relative',
     display: 'flex',

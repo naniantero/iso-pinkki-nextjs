@@ -18,7 +18,7 @@ const styles: SxStyleProp = {
     minHeight: '100vh',
   },
   main: {
-    maxWidth: 960,
+    maxWidth: 800,
     flex: '1 1 100%',
     width: '100%',
   },
