@@ -39,8 +39,10 @@ export const Image: FC<ImageProps> = ({
 }) => {
   const [loaded, setLoaded] = useState(!src);
 
+  /**
+   * TODO: check out what's wrong with this
+   */
   const onImageLoaded = () => {
-    console.log('LOADED')
     setLoaded(true);
   };
 

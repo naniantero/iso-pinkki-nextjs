@@ -18,10 +18,10 @@ const styles: SxStyleProp = {
     borderRadius: 4,
     '&:not(:hover) .featured-image': {
       filter: 'none',
-      '-webkit-filter': 'grayscale(100%)',
-      '-moz-filter': 'grayscale(100%)',
-      '-ms-filter': 'grayscale(100%)',
-      '-o-filter': 'grayscale(100%)',
+      'WebkitFilter': 'grayscale(100%)',
+      'MozFilter': 'grayscale(100%)',
+      'msFilter ': 'grayscale(100%)',
+      'OFilter': 'grayscale(100%)',
     },
   },
   featuredImage: {

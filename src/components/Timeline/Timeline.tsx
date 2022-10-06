@@ -44,13 +44,13 @@ const styles: SxStyleProp = {
     justifyContent: 'center',
     fontSize: 0,
     height: 24,
-    marginTop: -24,
+    marginTop: -3,
   },
   yearHeading: {
-    marginRight: [0, -24],
+    marginRight: [0,-3],
     borderBottom: ['1px solid', 'none'],
     borderColor: 'stroke',
-    paddingBottom: [1, 0],
+    paddingBottom: [1,0],
     display: 'block',
   },
   itemList: {
