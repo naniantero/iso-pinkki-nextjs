@@ -17,3 +17,5 @@ npm run dev
 ```
 
 Open [http://localhost:8008](http://localhost:8008) with your browser to see the result.
+
+There's a demo running at [https://iso-pinkki-nextjs.vercel.app/](https://iso-pinkki-nextjs.vercel.app/) (still in progress)
