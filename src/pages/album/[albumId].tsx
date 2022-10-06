@@ -48,6 +48,16 @@ const styles: SxStyleProp = {
     display: 'flex',
     justifyContent: 'center',
   },
+  streamLinks: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    paddingTop: 2,
+    paddingBottom: 2,
+    backgroundColor: 'rgba(0,0,0,0.5)'
+  },
 };
 
 const SingleAlbumPage: React.FC<NextPage> = () => {
@@ -56,6 +66,9 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
   const { data: albumIds } = useAlbumIds();
   const t = useTranslations('pages.singleAlbum');
 
+  /**
+   * Returns an adjacent album ids object based on current albumId
+   */
   const adjacentIds = useMemo(() => {
     if (!router.query.albumId || !albumIds?.length) return;
     const currentAlbumIndex = albumIds?.findIndex(
@@ -67,6 +80,7 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
       prevId: albumIds[currentAlbumIndex - 1],
     };
   }, [albumIds, router.query.albumId]);
+
   /**
    * Album meta data displayed via KeyValueList
    */
@@ -85,16 +99,25 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
     },
   ];
 
+  /**
+   * Redirects to an adjacent page when user clicks "next"
+   */
   const onNextClick = () => {
     if (!adjacentIds?.nextId) return;
     router.push(ROUTES.singleAlbum.replace('{albumId}', adjacentIds?.nextId));
   };
 
+  /**
+   * Redirects to an adjacent page when user clicks "prev"
+   */
   const onPrevClick = () => {
     if (!adjacentIds?.prevId) return;
     router.push(ROUTES.singleAlbum.replace('{albumId}', adjacentIds?.prevId));
   };
 
+  /**
+   * Renders a pagination block with alternating styles depending on isMobile param
+   */
   const renderPagination = (isMobile?: boolean) => (
     <Box sx={styles.paginationContainer}>
       <Pagination
@@ -106,6 +129,7 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
       />
     </Box>
   );
+
   return (
     <CommonLayout title={data?.title ?? '-'}>
       {renderPagination(true)}
@@ -119,7 +143,9 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
                   alt={data?.title}
                   sx={styles.featuredImage}
                 />
+                <StreamLinks album={data} mt={3} sx={styles.streamLinks} />
               </Box>
+
               <Box>
                 <Heading as='h1'>{data?.title}</Heading>
                 <Text mb={3}>{data?.artist.name}</Text>
@@ -128,7 +154,6 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
                 {data.description && (
                   <Box dangerouslySetInnerHTML={{ __html: data.description }} />
                 )}
-                <StreamLinks album={data} mt={3} />
               </Box>
             </Box>
           </Box>
@@ -145,13 +170,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     query: { albumId },
   } = context;
 
-  // prefetch data on the server
+  /**
+   * Prefetch the album data on the server side
+   */
   await queryClient.prefetchQuery([QUERY_KEYS.singleAlbum, albumId], () =>
     api
       .get(API_ROUTES.singleAlbum.replace('{albumId}', albumId as string))
       .then((res: AxiosResponse<AlbumCollection>) => res.data)
   );
 
+  /**
+   * Fethches all the album ids. Needed to display the prev/next album pagination
+   */
   await queryClient.prefetchQuery([QUERY_KEYS.albumIds], () =>
     api
       .get(API_ROUTES.albumIds)

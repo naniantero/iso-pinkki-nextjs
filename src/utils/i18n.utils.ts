@@ -6,10 +6,14 @@ import { DateTime } from 'luxon';
  */
 export const getLocalizedDate = (
   date?: string | Date,
-  includeYear?: boolean
-) => {
-  if (!date) return undefined;
+  includeYear?: boolean,
+  yearOnly?: boolean
+): string => {
+  if (!date) return '';
   let format = 'dd.MM.';
+
   if (includeYear) format = `${format}yyyy`;
-  return DateTime.fromISO(date as string).toFormat(format);
+  if (yearOnly) format = 'yyyy';
+
+  return DateTime.fromISO(date as string).toFormat(format) ?? '';
 };

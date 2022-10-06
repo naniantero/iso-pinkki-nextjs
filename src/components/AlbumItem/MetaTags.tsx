@@ -26,9 +26,6 @@ const styles: SxStyleProp = {
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    // '& > span:not(:last-child)': {
-    //   marginRight: 1,
-    // },
     gap: 1,
   },
 };

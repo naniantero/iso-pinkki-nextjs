@@ -5,7 +5,7 @@ import {
   ImageProps as ThemeImageProps,
   Spinner,
 } from 'theme-ui';
-import { IconProps, Icon } from '../Icon/Icon';
+import { IconProps, Icon } from '@components/Icon';
 
 interface ImageProps extends ThemeImageProps {
   placeholderIcon?: IconProps['icon'];

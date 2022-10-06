@@ -10,4 +10,7 @@ export const QUERY_KEYS = Object.freeze({
 
 export const DEFAULT_STALE_TIME = Infinity;
 
+/**
+ * Default page size on the index page
+ */
 export const ALBUM_QUERY_PAGE_SIZE = 10;

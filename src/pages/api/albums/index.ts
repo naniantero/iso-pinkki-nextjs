@@ -44,7 +44,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         skip,
         skip + take
       );
-      console.log(source, skip, take);
     } else {
       const contentfulResponse = await ContentfulService.request(graphQlQuery) as ContentfulAlbumCollectionResponse
       source = contentfulResponse;

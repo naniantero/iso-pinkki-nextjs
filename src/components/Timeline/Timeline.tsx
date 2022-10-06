@@ -1,9 +1,8 @@
-import { Box, Button } from 'theme-ui';
-import React, { ReactNode } from 'react';
-import { Heading } from '../Typography/Heading';
-import { BlankList } from '../BlankList/BlankList';
-import { AlbumItem } from '../AlbumItem/AlbumItem';
-import { Date } from '@components/Typography';
+import { AlbumItem } from '@components/AlbumItem';
+import { BlankList } from '@components/BlankList';
+import { Date, Heading } from '@components/Typography';
+import React from 'react';
+import { Box } from 'theme-ui';
 
 interface Props {
   onItemClick: (itemId: string) => void;
@@ -47,16 +46,17 @@ const styles: SxStyleProp = {
     marginTop: -3,
   },
   yearHeading: {
-    marginRight: [0,-3],
+    marginRight: [0, -3],
     borderBottom: ['1px solid', 'none'],
     borderColor: 'stroke',
-    paddingBottom: [1,0],
+    paddingBottom: [1, 0],
     display: 'block',
   },
   itemList: {
     width: '100%',
   },
 };
+
 export const Timeline: React.FC<Props> = ({ albums, year, onItemClick }) => {
   return (
     <Box sx={styles.yearContainer} className={`${year} year`} mb={3}>

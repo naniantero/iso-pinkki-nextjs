@@ -12,7 +12,7 @@ const styles: SxStyleProp = {
   wrapper: {
     display: 'flex',
     '& > *:not(:last-child)': {
-      marginRight: 1
+      marginRight: 1,
     },
   },
   iconContainer: {
@@ -33,6 +33,7 @@ const styles: SxStyleProp = {
     maxHeight: 36,
   },
 };
+
 const StreamLink: React.FC<StreamLinkProps> = ({ icon, href }) => {
   return (
     <Box sx={styles.iconContainer}>
@@ -43,6 +44,8 @@ const StreamLink: React.FC<StreamLinkProps> = ({ icon, href }) => {
   );
 };
 export const StreamLinks: React.FC<Props> = ({ album, sx, ...rest }) => {
+  if (!album.spotify && !album.bandcamp && !album.tidal) return null;
+
   return (
     <Box sx={{ ...styles.wrapper, ...sx }} {...rest}>
       {album.spotify && <StreamLink icon='spotify' href={album.spotify} />}

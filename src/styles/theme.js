@@ -9,7 +9,6 @@ export const colors = {
   grey8: '#ACACAC',
   grey9: '#dbdbdb',
   grey10: '#F4F5F8',
-  pinkkiBlack: '#262626',
   pinkki: '#f73097',
 };
 
@@ -42,9 +41,9 @@ const theme = {
     heading: 1.125,
   },
   colors: {
-    text: colors.grey4,
+    text: colors.grey5,
     background: 'white',
-    primary: colors.pinkkiBlack,
+    primary: colors.grey3,
     secondary: colors.pinkki,
     stroke: colors.grey9,
     darkStroke: colors.grey7,

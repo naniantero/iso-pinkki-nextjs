@@ -1,9 +1,6 @@
-import { Date, Heading, Text } from '@components/Typography';
+import { Heading, Text } from '@components/Typography';
 import { Box, BoxProps, Button, Image } from 'theme-ui';
 import { MetaTags } from './MetaTags';
-import { darken } from '@theme-ui/color';
-import { useTranslations } from 'next-intl';
-import { KeyValueList } from '@components/KeyValueList';
 
 interface Props extends Omit<BoxProps, 'onClick'> {
   album: Album;
@@ -18,10 +15,10 @@ const styles: SxStyleProp = {
     borderRadius: 4,
     '&:not(:hover) .featured-image': {
       filter: 'none',
-      'WebkitFilter': 'grayscale(100%)',
-      'MozFilter': 'grayscale(100%)',
+      WebkitFilter: 'grayscale(100%)',
+      MozFilter: 'grayscale(100%)',
       'msFilter ': 'grayscale(100%)',
-      'OFilter': 'grayscale(100%)',
+      OFilter: 'grayscale(100%)',
     },
   },
   featuredImage: {
@@ -42,7 +39,7 @@ const styles: SxStyleProp = {
     left: 0,
     right: 0,
   },
-  albumContentt: {
+  albumContent: {
     display: 'flex',
     alignItems: ['flex-start', 'center'],
     justifyContent: 'space-between',
@@ -60,7 +57,6 @@ const styles: SxStyleProp = {
 };
 
 export const AlbumItem: React.FC<Props> = ({ album, onClick, ...rest }) => {
-  const t = useTranslations('common');
   const onItemClick = () => {
     onClick(album.id);
   };
@@ -76,7 +72,7 @@ export const AlbumItem: React.FC<Props> = ({ album, onClick, ...rest }) => {
           alt={album.title}
         />
       )}
-      <Box sx={styles.albumContentt}>
+      <Box sx={styles.albumContent}>
         <Box sx={styles.albumTextContent}>
           <Heading as='h3'>{album.title}</Heading>
           <Text>{album.artist.name}</Text>

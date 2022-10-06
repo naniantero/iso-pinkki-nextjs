@@ -1,8 +1,7 @@
-import React from 'react';
-import { BoxProps, Box, Button } from 'theme-ui';
-import { Icon } from '../Icon/Icon';
 import { useTranslations } from 'next-intl';
-import { Text } from '@components/Typography';
+import React from 'react';
+import { Box, BoxProps, Button } from 'theme-ui';
+import { Icon } from '../Icon/Icon';
 
 interface Props extends BoxProps {
   prevId?: string;
@@ -17,6 +16,11 @@ const styles: SxStyleProp = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  separator: {
+    width: '1px',
+    height: 36,
+    backgroundColor: 'stroke',
+  }
 };
 export const Pagination: React.FC<Props> = ({
   prevId,
@@ -36,7 +40,7 @@ export const Pagination: React.FC<Props> = ({
           {t('previous')}
         </Button>
       )}
-      {nextId && prevId && <Text sx={{ color: 'stroke' }}>|</Text>}
+      {nextId && prevId && <Box sx={styles.separator} />}
       {nextId && (
         <Button variant='text' onClick={onNextClick}>
           {t('next')}

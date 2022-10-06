@@ -1,20 +1,23 @@
 import { CommonLayout } from '@components/Layout';
 import { Timeline } from '@components/Timeline/Timeline';
 import { Text } from '@components/Typography';
-import { QUERY_KEYS } from '@constants';
+import {
+  ALBUM_QUERY_PAGE_SIZE,
+  API_ROUTES,
+  QUERY_KEYS,
+  ROUTES
+} from '@constants';
 import { api } from '@services/api';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { getLocalizedDate } from '@utils';
 import { AxiosResponse } from 'axios';
-import { DateTime } from 'luxon';
 import { GetServerSideProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Button, Spinner } from 'theme-ui';
-import { ALBUM_QUERY_PAGE_SIZE, API_ROUTES } from '@constants';
 import { useAlbums } from '../hooks/album.hooks';
-import { useRouter } from 'next/router';
-import { ROUTES } from '../constants/path.constants';
 
 const styles: SxStyleProp = {
   loadMoreButton: {
@@ -33,13 +36,16 @@ const IndexPage: React.FC<NextPage> = () => {
   const { ref, inView } = useInView();
 
   /**
-   * Returns a year of a given release date
+   * A helper that returns a year of a given release date
    */
   const getReleaseYear = (album: Album): string =>
-    DateTime.fromISO(album.releasedAt).toFormat('yyyy');
+    getLocalizedDate(album.releasedAt, false, true);
 
   const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useAlbums();
 
+  /**
+   * Returns a memoized array of releases sorted by the release year
+   */
   const releaseYears = useMemo(() => {
     const allAlbums = data?.pages.flatMap((page) => page.items);
 
@@ -52,10 +58,16 @@ const IndexPage: React.FC<NextPage> = () => {
       }));
   }, [data]);
 
+  /**
+   * Fetches a new page when "load more" button is in the viewport
+   */
   useEffect(() => {
     if (inView) fetchNextPage();
   }, [inView, fetchNextPage]);
 
+  /**
+   * Redirects user to a single album page upon a click
+   */
   const onAlbumClick = (albumId: string) => {
     router.push(ROUTES.singleAlbum.replace('{albumId}', albumId));
   };

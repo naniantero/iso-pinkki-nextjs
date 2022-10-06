@@ -11,7 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  color: var(--theme-ui-colors-grey6);
+  color: var(--theme-ui-colors-grey5);
   font-weight: 300;
   height: 100%;
   width: 100%;
@@ -25,14 +25,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
 }

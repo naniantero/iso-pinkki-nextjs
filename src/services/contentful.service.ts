@@ -19,7 +19,6 @@ class ContentfulModel {
       const res = await axios.post(fetchUrl, JSON.stringify({ query }), config);
       return res.data?.data;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }

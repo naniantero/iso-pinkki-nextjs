@@ -17,7 +17,7 @@ const styles = {
 };
 export const Footer: React.FC<Props> = () => {
   return (
-    <Box className='footer' as='footer' sx={styles.container} px={3}>
+    <Box className='layout__footer' as='footer' sx={styles.container} px={3}>
       <Link sx={styles.link} href='mailto:isopinkki@gmail.com'>
         isopinkki@gmail.com
       </Link>

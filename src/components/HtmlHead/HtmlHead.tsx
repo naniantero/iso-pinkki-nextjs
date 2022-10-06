@@ -14,6 +14,7 @@ export const HtmlHead: FC<Props> = ({ title }) => {
   return (
     <Head>
       <title>{htmlTitle}</title>
+      <meta name='viewport' content='width=device-width, initial-scale=1' />
     </Head>
   );
 };
