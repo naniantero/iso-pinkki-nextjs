@@ -1,17 +1,12 @@
-import React, { FC, useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import {
-  Image as ThemeImage,
-  Box,
-  ImageProps as ThemeImageProps,
-  Spinner,
+  Box, Image as ThemeImage, ImageProps as ThemeImageProps,
+  Spinner
 } from 'theme-ui';
-import { IconProps, Icon } from '@components/Icon';
 
 interface ImageProps extends ThemeImageProps {
-  placeholderIcon?: IconProps['icon'];
   src?: string;
   alt: string;
-  size?: number | number[];
   imgSx?: any;
 }
 
@@ -28,15 +23,7 @@ const styles = {
   img: {},
 };
 
-export const Image: FC<ImageProps> = ({
-  src,
-  placeholderIcon,
-  alt,
-  height,
-  imgSx,
-  size,
-  sx,
-}) => {
+export const Image: FC<ImageProps> = ({ src, alt, imgSx, sx }) => {
   const [loaded, setLoaded] = useState(!src);
 
   /**
@@ -51,28 +38,19 @@ export const Image: FC<ImageProps> = ({
       return (
         <ThemeImage
           className='pinkki-image'
-          height={height}
           src={src}
           alt={alt}
           onLoad={onImageLoaded}
           sx={imgSx}
         />
       );
-    if (placeholderIcon) return <Icon icon={placeholderIcon} />;
     return undefined;
-  }, [alt, src, placeholderIcon, height, imgSx]);
+  }, [alt, src, imgSx]);
 
   const resolvedStyles = useMemo(() => {
-    const extendedStyles = { ...styles.container, ...sx } as any;
-    if (size) {
-      extendedStyles.minWidth = size;
-      extendedStyles.minHeight = size;
-      extendedStyles.maxWidth = size;
-      extendedStyles.maxHeight = size;
-    }
+    return { ...styles.container, ...sx } as any;
+  }, [sx]);
 
-    return extendedStyles;
-  }, [size, sx]);
   return (
     <Box sx={resolvedStyles} className='pinkki-image-container'>
       {!loaded && <Spinner sx={{ position: 'absolute' }} />}

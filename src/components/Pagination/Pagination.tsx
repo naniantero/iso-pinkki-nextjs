@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { Box, BoxProps, Button } from 'theme-ui';
-import { Icon } from '../Icon/Icon';
+import { Icon } from '@components/Icon';
 
 interface Props extends BoxProps {
   prevId?: string;

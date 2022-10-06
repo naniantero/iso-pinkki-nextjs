@@ -1,6 +1,6 @@
 import { Heading, Text } from '@components/Typography';
 import { Box, BoxProps, Button, Image } from 'theme-ui';
-import { MetaTags } from './MetaTags';
+import { MetaTags } from '../MetaTags/MetaTags';
 
 interface Props extends Omit<BoxProps, 'onClick'> {
   album: Album;

@@ -1,7 +1,7 @@
-import { MetaTags } from '@components/AlbumItem';
 import { Image } from '@components/Image';
 import { KeyValueList } from '@components/KeyValueList';
 import { CommonLayout } from '@components/Layout';
+import { MetaTags } from '@components/MetaTags';
 import { Pagination } from '@components/Pagination';
 import { StreamLinks } from '@components/StreamLinks';
 import { Date, Heading, Text } from '@components/Typography';
@@ -27,7 +27,6 @@ const styles: SxStyleProp = {
     flex: 1,
     width: '100%',
     height: '100%',
-    borderRadius: 4,
   },
   imageContainer: {
     maxWidth: ['none', 400],
@@ -50,15 +49,10 @@ const styles: SxStyleProp = {
     justifyContent: 'center',
   },
   streamLinks: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     justifyContent: 'center',
     paddingTop: 2,
     paddingBottom: 2,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    borderRadius: '0 0 4px 4px',
+    backgroundColor: 'primary',
   },
 };
 
@@ -145,7 +139,7 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
                   alt={data?.title}
                   sx={styles.featuredImage}
                 />
-                <StreamLinks album={data} mt={3} sx={styles.streamLinks} />
+                <StreamLinks album={data} sx={styles.streamLinks} />
               </Box>
 
               <Box>
