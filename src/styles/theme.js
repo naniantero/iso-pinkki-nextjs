@@ -22,6 +22,9 @@ export const colors = {
 export const breakpoints = [480, 768, 1024, 1440];
 
 const theme = {
+  config: {
+    useColorSchemeMediaQuery: false,
+  },
   space: [0, 4, 16, 24, 48, 64, 96, 128, 160, 192, 256],
   fonts: {
     body: 'Libre Baskerville, serif',
