@@ -25,7 +25,6 @@ const styles: SxStyleProp = {
   featuredImage: {
     maxWidth: '100%',
     flex: 1,
-    marginBottom: [3, 0],
     width: '100%',
     height: '100%',
     borderRadius: 4,
@@ -37,6 +36,7 @@ const styles: SxStyleProp = {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
+    marginBottom: [3, 0],
   },
   desktopPagination: {
     display: ['none', 'flex'],
