@@ -1,4 +1,4 @@
-import { AlbumItem } from '@components/AlbumItem';
+import { AlbumItem } from '@components/Timeline/AlbumItem';
 import { BlankList } from '@components/BlankList';
 import { Date, Heading } from '@components/Typography';
 import React from 'react';
@@ -6,7 +6,7 @@ import { Box } from 'theme-ui';
 
 interface Props {
   onItemClick: (itemId: string) => void;
-  albums: Album[];
+  albums: Contentful.Album[];
   year: string;
 }
 

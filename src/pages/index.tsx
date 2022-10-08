@@ -1,11 +1,10 @@
 import { CommonLayout } from '@components/Layout';
 import { Timeline } from '@components/Timeline/Timeline';
-import { Text } from '@components/Typography';
 import {
   ALBUM_QUERY_PAGE_SIZE,
   API_ROUTES,
   QUERY_KEYS,
-  ROUTES
+  ROUTES,
 } from '@constants';
 import { api } from '@services/api';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
@@ -16,7 +15,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Button, Spinner } from 'theme-ui';
+import { Button, Spinner, Text } from 'theme-ui';
 import { useAlbums } from '../hooks/album.hooks';
 
 const styles: SxStyleProp = {
@@ -38,7 +37,7 @@ const IndexPage: React.FC<NextPage> = () => {
   /**
    * A helper that returns a year of a given release date
    */
-  const getReleaseYear = (album: Album): string =>
+  const getReleaseYear = (album: Contentful.Album): string =>
     getLocalizedDate(album.releasedAt, false, true);
 
   const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useAlbums();
@@ -110,7 +109,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       .get(API_ROUTES.albums, {
         params: { skip: 0, take: ALBUM_QUERY_PAGE_SIZE },
       })
-      .then((res: AxiosResponse<AlbumCollection>) => res.data)
+      .then((res: AxiosResponse<Contentful.AlbumCollection>) => res.data)
   );
 
   return {

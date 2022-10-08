@@ -6,12 +6,11 @@ type IconType =
   | 'chevron_left'
   | 'chevron_right'
   | 'spotify'
-  | 'arrow_back_ios';
+  | 'arrow_back_ios'
+  | 'play_arrow'
+  | 'stop';
 
-const narrowIcons = [
-  'arrow_back_ios',
-] as IconType[];
-
+const narrowIcons = ['arrow_back_ios'] as IconType[];
 export interface IconProps extends TextProps {
   type?: 'outlined';
   icon: IconType;

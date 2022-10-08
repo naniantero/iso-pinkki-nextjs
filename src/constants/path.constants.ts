@@ -14,4 +14,5 @@ export const API_ROUTES = Object.freeze({
   albums: '/api/albums',
   singleAlbum: '/api/albums/{albumId}',
   albumIds: '/api/albums/ids',
+  spotifyAuth: '/api/spotify/auth'
 });

@@ -1,4 +1,4 @@
-import { Image } from '@components/Image';
+import { AlbumTrackList } from '@components/AlbumTrackList';
 import { KeyValueList } from '@components/KeyValueList';
 import { CommonLayout } from '@components/Layout';
 import { Pagination } from '@components/Pagination';
@@ -13,7 +13,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
-import { Box, Divider } from 'theme-ui';
+import { Box, Divider, Image } from 'theme-ui';
 import { useAlbumIds } from '../../hooks/album.hooks';
 
 const styles: SxStyleProp = {
@@ -30,7 +30,7 @@ const styles: SxStyleProp = {
     height: '100%',
   },
   imageContainer: {
-    maxWidth: ['none', 400],
+    maxWidth: ['none', 480],
     marginRight: [0, 3],
     position: 'relative',
     display: 'flex',
@@ -42,7 +42,11 @@ const styles: SxStyleProp = {
     display: 'flex',
     justifyContent: 'center',
   },
-  wrapper: {},
+  basicInfo: {
+    backgroundColor: 'grey10',
+    borderRadius: 4,
+    padding: 2,
+  },
 };
 
 const SingleAlbumPage: React.FC<NextPage> = () => {
@@ -71,10 +75,6 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
    * Album meta data displayed via KeyValueList
    */
   const keyValueListItems = [
-    {
-      key: t('ean'),
-      value: data?.ean,
-    },
     {
       key: t('catalogId'),
       value: data?.ids?.join(', '),
@@ -109,6 +109,13 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
     router.push(ROUTES.singleAlbum.replace('{albumId}', adjacentIds?.prevId));
   };
 
+  const featuredSpotifyImg = useMemo(() => {
+    const bigImg = data?.spotify.album?.images.find(
+      (img) => (img.height = 640)
+    );
+    return bigImg?.url;
+  }, [data]);
+
   return (
     <CommonLayout title={data?.title ?? '-'}>
       <Box sx={styles.wrapper} py={[3, 5]}>
@@ -125,24 +132,42 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
           <Box sx={styles.infoContainer}>
             <Box sx={styles.imageContainer}>
               <Image
-                src={data?.featuredImage.url}
+                src={featuredSpotifyImg}
                 alt={data?.title}
                 sx={styles.featuredImage}
+              />
+              <StreamLinks
+                album={data}
+                mt={2}
+                sx={{
+                  display: ['none', 'flex'],
+                  justifyContent: 'center',
+                  alignItems: 'flex-start',
+                }}
               />
             </Box>
 
             <Box sx={{ flex: 1 }}>
               <Box mb={3}>
                 <Heading as='h1'>{data?.title}</Heading>
-                <Heading as='h3' mt={1} color='secondary' mb={3}>
+                <Heading as='h3' mt={1} color='secondary'>
                   {data?.artist.name}
                 </Heading>
               </Box>
-              <KeyValueList items={keyValueListItems} />
-              {data.description && (
-                <Box dangerouslySetInnerHTML={{ __html: data.description }} />
-              )}
-              <StreamLinks album={data} mt={3} />
+              <Box sx={styles.basicInfo} p={2}>
+                <KeyValueList items={keyValueListItems} />
+              </Box>
+              <AlbumTrackList album={data} mt={2} />
+
+              <StreamLinks
+                album={data}
+                mt={3}
+                sx={{
+                  display: ['flex', 'none'],
+                  justifyContent: 'center',
+                  alignItems: 'flex-start',
+                }}
+              />
             </Box>
           </Box>
         )}
@@ -163,7 +188,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   await queryClient.prefetchQuery([QUERY_KEYS.singleAlbum, albumId], () =>
     api
       .get(API_ROUTES.singleAlbum.replace('{albumId}', albumId as string))
-      .then((res: AxiosResponse<AlbumCollection>) => res.data)
+      .then((res: AxiosResponse<Contentful.AlbumCollection>) => res.data)
   );
 
   /**
@@ -172,7 +197,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   await queryClient.prefetchQuery([QUERY_KEYS.albumIds], () =>
     api
       .get(API_ROUTES.albumIds)
-      .then((res: AxiosResponse<AlbumCollection>) => res.data)
+      .then((res: AxiosResponse<Contentful.AlbumCollection>) => res.data)
   );
 
   return {

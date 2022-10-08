@@ -86,6 +86,9 @@ const theme = {
       '&:disabled': {
         color: lighten('text', 0.3),
         cursor: 'default',
+        '&:hover': {
+          color: lighten('text', 0.3),
+        },
       },
       '&:hover': {
         color: darken(colors.accent, 0.2),
@@ -139,10 +142,13 @@ const theme = {
       },
     },
     default: {
-      fontSize: [0, 1],
+      fontSize: [0, 2],
     },
   },
   styles: {
+    body: {
+      fontSize: [0, 1],
+    },
     hr: {
       color: 'stroke',
     },

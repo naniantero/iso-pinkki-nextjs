@@ -19,7 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const contentfulResponse = (await ContentfulService.request(
       graphQlQuery
-    )) as ContentfulAlbumCollectionResponse;
+    )) as Contentful.AlbumCollectionResponse;
 
     const collection = { ...contentfulResponse.albumCollection };
     const ids = collection.items.map((item) => item.sys.id);

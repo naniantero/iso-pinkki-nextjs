@@ -21,7 +21,7 @@ import ToastService from '../services/toast.service';
 /**
  * Fetches all albums using infinite query
  */
-export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
+export const useAlbums = (): UseInfiniteQueryResult<Contentful.AlbumCollection> => {
   return useInfiniteQuery(
     [QUERY_KEYS.albums],
     async ({ pageParam = 0 }) => {
@@ -32,7 +32,7 @@ export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
             skip: pageParam * ALBUM_QUERY_PAGE_SIZE,
           },
         })
-      ).data as AlbumCollection;
+      ).data as Contentful.AlbumCollection;
 
       return res;
     },
@@ -43,7 +43,7 @@ export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
         return undefined;
       },
       onError: () => {
-        ToastService.showSuccess('toasts.error.hooks.useAlbums');
+        ToastService.showError('toasts.error.hooks.useAlbums');
       },
       staleTime: DEFAULT_STALE_TIME,
     }
@@ -53,17 +53,17 @@ export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
 /**
  * Makes a single album query using an albumId
  */
-export const useSingleAlbum = (albumId: string): UseQueryResult<Album> => {
+export const useSingleAlbum = (albumId: string): UseQueryResult<Contentful.AlbumWithSpotify> => {
   return useQuery(
     [QUERY_KEYS.singleAlbum, albumId],
     () =>
       api
         .get(API_ROUTES.singleAlbum.replace('{albumId}', albumId as string))
-        .then((res: AxiosResponse<Album>) => res.data),
+        .then((res: AxiosResponse<Contentful.AlbumWithSpotify>) => res.data),
     {
       staleTime: DEFAULT_STALE_TIME,
       onError: () => {
-        ToastService.showSuccess('toasts.error.hooks.useSingleAlbum');
+        ToastService.showError('toasts.error.hooks.useSingleAlbum');
       },
     }
   );
@@ -78,7 +78,7 @@ export const useAlbumIds = (): UseQueryResult<string[]> => {
     () =>
       api
         .get(API_ROUTES.albumIds)
-        .then((res: AxiosResponse<Album>) => res.data),
+        .then((res: AxiosResponse<Contentful.Album>) => res.data),
     {
       staleTime: DEFAULT_STALE_TIME,
     }

@@ -9,13 +9,11 @@ const styles: SxStyleProp = {
   dl: {},
   dt: {
     display: 'flex',
-    fontWeight: 300,
+    fontWeight: 600,
     float: 'left',
-    fontSize: 1,
   },
   dd: {
     display: 'flex',
-    fontSize: 1,
   },
 };
 export const KeyValueList: FC<Props> = ({ items, ...rest }) => {
@@ -28,7 +26,7 @@ export const KeyValueList: FC<Props> = ({ items, ...rest }) => {
               <Box as='dt' mr={3} sx={styles.dt}>
                 {item.key}
               </Box>
-              <Box as='dd' sx={styles.dd}>
+              <Box as='dd' sx={styles.dd} suppressHydrationWarning>
                 {item.value}
               </Box>
             </Grid>

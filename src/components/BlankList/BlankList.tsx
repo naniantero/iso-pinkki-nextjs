@@ -18,6 +18,7 @@ export const BlankList: FC<BlankListProps> = ({
   mr,
   isLoading,
   noItemsText,
+  as,
   ...rest
 }) => {
   const itemCount = Children.toArray(children).length;
@@ -43,7 +44,7 @@ export const BlankList: FC<BlankListProps> = ({
   return (
     <Box
       sx={{ ...styles.list, ...sx }}
-      as='ul'
+      as={as ?? 'ul'}
       className='blank-pinkki-list'
       {...rest}
     >
