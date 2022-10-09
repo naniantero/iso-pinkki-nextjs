@@ -2,7 +2,7 @@ import { Box, BoxProps } from 'theme-ui';
 import { useTranslations } from 'next-intl';
 
 interface Props extends BoxProps {
-  album: Album;
+  album: Contentful.Album;
   hideFormats?: boolean;
   hideType?: boolean;
 }
