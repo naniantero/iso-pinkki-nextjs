@@ -1,6 +1,6 @@
 import { Icon } from '@components/Icon';
 import { Duration } from 'luxon';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, BoxProps, IconButton, IconButtonProps } from 'theme-ui';
 import AudioPlayer from 'react-audio-player';
 import { IconProps } from '@components/Icon';
@@ -41,7 +41,7 @@ const styles: SxStyleProp = {
     '&:hover': {
       backgroundColor: 'grey10',
       transition: 'background-color 0.25s ease-in',
-    }
+    },
   },
   td: {
     flex: 1,
@@ -50,6 +50,9 @@ const styles: SxStyleProp = {
   },
 };
 
+/**
+ * Renders the play button on AlbumTrackList
+ */
 const PlaybackButton: React.FC<PlaybackButtonProps> = ({
   onClick,
   icon,
@@ -64,17 +67,25 @@ const PlaybackButton: React.FC<PlaybackButtonProps> = ({
 };
 
 export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
+  /**
+   * Set preview track to null on unmount
+   */
   useEffect(() => {
     return () => {
       setPreviewTrack(null);
     };
   }, [album]);
+
   const [previewTrack, setPreviewTrack] = useState<string | null>(null);
 
   const getLength = (duration: number) => {
     return Duration.fromMillis(duration).toFormat('mm:ss');
   };
 
+  /**
+   * Sets clicked track as a preview track and AudioPlayer
+   * starts playing it automatically. Undefined stops the play
+   */
   const onPlaybackButtonClick = (track?: SpotifyApi.TrackObjectFull) => () => {
     setPreviewTrack(track?.preview_url ?? null);
   };
@@ -85,9 +96,9 @@ export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
 
       <Box as='table' sx={styles.table}>
         <tbody>
-          {album.spotify.tracks?.tracks.map((item) => (
-            <>
-              <Box as='tr' key={item.track_number} sx={styles.tr}>
+          {album.spotify?.tracks?.tracks.map((item) => (
+            <React.Fragment key={item.name}>
+              <Box as='tr' sx={styles.tr}>
                 <Box as='td' sx={{ ...styles.td, maxWidth: 32 }}>
                   {previewTrack !== item.preview_url && (
                     <PlaybackButton
@@ -115,11 +126,10 @@ export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
                   {getLength(item.duration_ms)}
                 </Box>
               </Box>
-            </>
+            </React.Fragment>
           ))}
         </tbody>
       </Box>
-      {/* <TrackPreviewModal track={previewTrack} /> */}
     </Box>
   );
 };

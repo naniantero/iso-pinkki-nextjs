@@ -1,5 +1,6 @@
-# Iso Pinkki site project powered by Next.js
+# Iso Pinkki site project
 
+Music collective Iso Pinkki's site. Powered by Next.js, Contentful and Spotify Rest API.
 ### Relies on
 
 - SSR
@@ -10,10 +11,12 @@
 
 ## Getting Started
 
-You can run development server by typing:
+Project needs all kinds of like.. top secret API keys and whatnot, so you probably won't get this thing running locally. However, there's a demo running at [https://iso-pinkki-nextjs.vercel.app/](https://iso-pinkki-nextjs.vercel.app/). 
 
-```bash
-npm run dev
-```
 
-... of course you will need the required Contentful secret keys. But worry not: There's a demo running at [https://iso-pinkki-nextjs.vercel.app/](https://iso-pinkki-nextjs.vercel.app/) (still in progress)
+## TODO
+
+Things are pretty much in progress. At least following things should be considered:
+
+* Make things more responsive (SSR)
+* Admin

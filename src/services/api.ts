@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL } from '@constants';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * API instance. Basically ensures that we use the same config

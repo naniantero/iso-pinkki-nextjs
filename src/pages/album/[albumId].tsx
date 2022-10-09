@@ -30,7 +30,7 @@ const styles: SxStyleProp = {
     height: '100%',
   },
   imageContainer: {
-    maxWidth: ['none', 480],
+    maxWidth: ['none', 300, 480],
     marginRight: [0, 3],
     position: 'relative',
     display: 'flex',
@@ -110,7 +110,7 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
   };
 
   const featuredSpotifyImg = useMemo(() => {
-    const bigImg = data?.spotify.album?.images.find(
+    const bigImg = data?.spotify?.album?.images.find(
       (img) => (img.height = 640)
     );
     return bigImg?.url;

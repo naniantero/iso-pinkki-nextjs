@@ -1,6 +1,6 @@
 import { Box, Image, Link, BoxProps } from 'theme-ui';
 interface Props extends BoxProps {
-  album: Album;
+  album: Contentful.AlbumWithSpotify;
 }
 
 interface StreamLinkProps {
@@ -48,11 +48,12 @@ const StreamLink: React.FC<StreamLinkProps> = ({ icon, href }) => {
   );
 };
 export const StreamLinks: React.FC<Props> = ({ album, sx, ...rest }) => {
-  if (!album.spotify && !album.bandcamp && !album.tidal) return null;
+  const spotifyHref = album.spotify?.album?.external_urls.spotify;
+  if (!spotifyHref && !album.bandcamp && !album.tidal) return null;
 
   return (
     <Box sx={{ ...styles.wrapper, ...sx }} {...rest}>
-      {album.spotify && <StreamLink icon='spotify' href={album.spotify} />}
+      {spotifyHref && <StreamLink icon='spotify' href={spotifyHref} />}
       {album.tidal && <StreamLink icon='tidal' href={album.tidal} />}
       {album.bandcamp && <StreamLink icon='bandcamp' href={album.bandcamp} />}
     </Box>

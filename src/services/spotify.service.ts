@@ -1,5 +1,3 @@
-// /utils/SpotifyModel.js
-
 import SpotifyWebApi from 'spotify-web-api-node';
 import { DateTime } from 'luxon';
 
@@ -66,6 +64,30 @@ class SpotifyModel {
         DateTime.local().plus({ seconds: expires_in }).toFormat('HH:mm:ss')
       );
     } catch (e) {
+      throw e;
+    }
+  }
+
+  /**
+   * Returns album metadata from Spotify13  2453aETZ6µ
+   */
+  async getSpotifyMeta(
+    spotifyAlbumId: string
+  ): Promise<{
+    tracks: SpotifyApi.MultipleTracksResponse;
+    album: SpotifyApi.SingleAlbumResponse;
+  }> {
+    try {
+      const albumRes = await SpotifyService.client.getAlbum(spotifyAlbumId);
+      const trackIds = albumRes.body.tracks.items.map((track) => track.id);
+      const tracksRes = await SpotifyService.client.getTracks(trackIds);
+
+      return {
+        tracks: tracksRes.body,
+        album: albumRes.body,
+      };
+    } catch (e: any) {
+      console.error('SPOTIFY ERROR', e);
       throw e;
     }
   }

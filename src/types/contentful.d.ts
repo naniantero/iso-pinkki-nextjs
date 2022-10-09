@@ -26,7 +26,6 @@ declare namespace Contentful {
     id: string;
     sys: Sys;
     type: Type;
-    description: null | string;
     releasedAt: string;
     featuredImage: FeaturedImage;
     reissue: boolean | null;
@@ -40,10 +39,9 @@ declare namespace Contentful {
 
   interface AlbumWithSpotify extends Album {
     spotify: {
-      album: SpotifyApi.SingleAlbumResponse | null;
-      tracks: SpotifyApi.MultipleTracksResponse | null;
-      artist: SpotifyApi.SingleArtistResponse | null;
-    };
+      album: SpotifyApi.SingleAlbumResponse;
+      tracks: SpotifyApi.MultipleTracksResponse;
+    } | null;
   }
 
   interface AlbumArtist {
