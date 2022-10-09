@@ -24,28 +24,25 @@ class SpotifyModel {
     if (tokenExpired) console.log('Token has expired');
 
     if (
-      accessToken
-      && this.client.getAccessToken() === accessToken
-      && !tokenExpired
+      accessToken &&
+      this.client.getAccessToken() === accessToken &&
+      !tokenExpired
     ) {
-      console.log(
-        'Client has an access token, and it matches our token. Doing nothing.',
-      );
       return;
     }
 
     if (accessToken && !tokenExpired) {
       console.log(
-        "We've stored an access token, but doesn't match the accessToken. Updating..",
+        "Spotify: We've stored an access token, but doesn't match the accessToken. Updating.."
       );
       this.client.setAccessToken(accessToken as string);
       return;
     }
 
     try {
-      console.log("We haven't stored an access token, or it has expired");
-      console.log('INITING',this.client)
-
+      console.log(
+        "Spotify: We haven't stored an access token, or it has expired"
+      );
       const {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         body: { access_token, expires_in },
@@ -62,8 +59,8 @@ class SpotifyModel {
         .toUnixInteger();
 
       console.log(
-        'Stored accessToken, it expires at',
-        DateTime.local().plus({ seconds: expires_in }).toFormat('HH:mm:ss'),
+        'Spotify: Access token expires at',
+        DateTime.local().plus({ seconds: expires_in }).toFormat('HH:mm:ss')
       );
     } catch (e) {
       throw e;
@@ -73,9 +70,7 @@ class SpotifyModel {
   /**
    * Returns album metadata from Spotify13  2453aETZ6µ
    */
-  async getSpotifyMeta(
-    spotifyAlbumId: string,
-  ): Promise<{
+  async getSpotifyMeta(spotifyAlbumId: string): Promise<{
     tracks: SpotifyApi.MultipleTracksResponse;
     album: SpotifyApi.SingleAlbumResponse;
   }> {
