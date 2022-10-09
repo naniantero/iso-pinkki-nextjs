@@ -1,3 +1,4 @@
+import React from 'react';
 import { MetaTags } from '@components/MetaTags';
 import { Heading } from '@components/Typography';
 import { Box, BoxProps, Button, Image, Text } from 'theme-ui';

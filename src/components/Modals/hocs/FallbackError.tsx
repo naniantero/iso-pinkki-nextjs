@@ -1,3 +1,4 @@
+import React from 'react';
 import { CommonModal } from '../CommonModal';
 import { useTranslations } from 'next-intl';
 import { Text } from 'theme-ui';

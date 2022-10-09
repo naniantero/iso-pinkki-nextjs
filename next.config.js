@@ -15,7 +15,6 @@ const nextConfig = {
     domains: [],
     localeDetection: false,
   },
- 
 };
 
 module.exports = nextConfig;

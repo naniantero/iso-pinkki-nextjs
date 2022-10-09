@@ -1,3 +1,4 @@
+import React from 'react';
 import { SITE_NAME } from '@constants';
 import Head from 'next/head';
 import { FC, useMemo } from 'react';

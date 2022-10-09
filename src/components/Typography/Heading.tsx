@@ -1,3 +1,4 @@
+import React from 'react';
 import { Heading as ThemeHeading, HeadingProps } from 'theme-ui';
 
 interface Props extends HeadingProps {

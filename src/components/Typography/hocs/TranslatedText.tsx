@@ -1,5 +1,6 @@
-import { Text } from '@components/Typography';
+import React from 'react';
 import { useTranslations } from 'next-intl';
+import { Text } from 'theme-ui';
 
 interface Props {
   text: string;

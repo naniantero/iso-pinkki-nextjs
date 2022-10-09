@@ -1,6 +1,6 @@
 import '@fontsource/fjalla-one';
 import '@fontsource/libre-baskerville';
-
+import React from 'react';
 import { FallbackError } from '@components/Modals';
 import {
   Hydrate,

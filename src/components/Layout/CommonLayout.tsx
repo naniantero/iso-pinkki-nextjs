@@ -1,3 +1,4 @@
+import React from 'react';
 import { ReactNode } from 'react';
 import { Box } from 'theme-ui';
 import { TopBar } from './TopBar';

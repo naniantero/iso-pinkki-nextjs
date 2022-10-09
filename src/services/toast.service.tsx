@@ -1,3 +1,4 @@
+import React from 'react';
 import { toast, ToastPosition } from 'react-toastify';
 import { TranslatedText } from '../components/Typography/hocs/TranslatedText';
 

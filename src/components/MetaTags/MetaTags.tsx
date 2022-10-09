@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, BoxProps } from 'theme-ui';
 import { useTranslations } from 'next-intl';
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Image, Link } from 'theme-ui';
 
 interface Props {}
