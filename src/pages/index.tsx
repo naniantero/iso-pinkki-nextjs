@@ -79,7 +79,7 @@ const IndexPage: React.FC<NextPage> = () => {
             key={obj.year}
             albums={obj.albums}
             onItemClick={onAlbumClick}
-          ></Timeline>
+          />
         );
       })}
 

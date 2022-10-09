@@ -12,7 +12,7 @@ import { useSingleAlbum } from 'hooks';
 import { GetServerSideProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Box, Divider, Image } from 'theme-ui';
 import { useAlbumIds } from '../../hooks/album.hooks';
 
@@ -60,7 +60,7 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
    * Returns an adjacent album ids object based on current albumId
    */
   const adjacentIds = useMemo(() => {
-    if (!router.query.albumId || !albumIds?.length) return;
+    if (!router.query.albumId || !albumIds?.length) return undefined;
     const currentAlbumIndex = albumIds?.findIndex(
       (id) => id === router.query.albumId
     );
@@ -111,14 +111,11 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
 
   const featuredSpotifyImg = useMemo(() => {
     const bigImg = data?.spotify?.album?.images.find(
-      (img) => (img.height = 640)
+      (img) => img.height === 640
     );
     return bigImg?.url;
   }, [data]);
 
-  useEffect(() => {
-    console.log(adjacentIds)
-  })
   return (
     <CommonLayout title={data?.title ?? '-'}>
       <Box sx={styles.wrapper} py={[3, 5]}>

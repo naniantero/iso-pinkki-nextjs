@@ -1,7 +1,7 @@
 import React from 'react';
-import { CommonModal } from '../CommonModal';
 import { useTranslations } from 'next-intl';
 import { Text } from 'theme-ui';
+import { CommonModal } from '../CommonModal';
 
 export const FallbackError = () => {
   const t = useTranslations('components.fallbackError');

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Image, Link, BoxProps } from 'theme-ui';
+
 interface Props extends BoxProps {
   album: Contentful.AlbumWithSpotify;
 }

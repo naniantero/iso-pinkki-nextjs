@@ -101,7 +101,6 @@ const theme = {
         color: 'primary',
         fontFamily: 'heading',
         lineHeight: 'heading',
-        fontWeight: 'heading',
         fontSize: [1, 4, 5],
         fontWeight: 900,
       },

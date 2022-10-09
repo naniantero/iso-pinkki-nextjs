@@ -27,6 +27,8 @@ const handler = async (
         .send(error?.response?.data);
     }
   }
+
+  return res.status(405);
 };
 
 export default withSpotify(handler);

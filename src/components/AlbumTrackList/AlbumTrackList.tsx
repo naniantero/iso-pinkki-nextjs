@@ -1,9 +1,8 @@
-import { Icon } from '@components/Icon';
+import { Icon, IconProps } from '@components/Icon';
 import { Duration } from 'luxon';
 import React, { useEffect, useState } from 'react';
 import { Box, BoxProps, IconButton, IconButtonProps } from 'theme-ui';
 import AudioPlayer from 'react-audio-player';
-import { IconProps } from '@components/Icon';
 
 interface Props extends BoxProps {
   album: Contentful.AlbumWithSpotify;
@@ -67,6 +66,8 @@ const PlaybackButton: React.FC<PlaybackButtonProps> = ({
 };
 
 export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
+  const [previewTrack, setPreviewTrack] = useState<string | null>(null);
+
   /**
    * Set preview track to null on unmount
    */
@@ -75,8 +76,6 @@ export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
       setPreviewTrack(null);
     };
   }, [album]);
-
-  const [previewTrack, setPreviewTrack] = useState<string | null>(null);
 
   const getLength = (duration: number) => {
     return Duration.fromMillis(duration).toFormat('mm:ss');

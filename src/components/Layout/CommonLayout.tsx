@@ -1,10 +1,9 @@
-import React from 'react';
-import { ReactNode } from 'react';
-import { Box } from 'theme-ui';
-import { TopBar } from './TopBar';
-import { Footer } from './Footer';
 import { HtmlHead } from '@components/HtmlHead/HtmlHead';
 import { APP_ID } from '@constants';
+import React, { ReactNode } from 'react';
+import { Box } from 'theme-ui';
+import { Footer } from './Footer';
+import { TopBar } from './TopBar';
 
 interface Props {
   children: ReactNode;

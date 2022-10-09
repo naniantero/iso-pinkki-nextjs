@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { FC, useMemo } from 'react';
 import { SITE_NAME } from '@constants';
 import Head from 'next/head';
-import { FC, useMemo } from 'react';
 
 interface Props {
   title: string;

@@ -5,12 +5,24 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
+    "airbnb",
+    "airbnb-typescript",
     "prettier"
   ],
   "rules": {
-    "class-methods-use-this": "off",
-    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "react/prop-types": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "arrow-body-style": "off",
+    "class-methods-use-this": "off",
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "no-useless-catch": "off",
+    "react/function-component-definition": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "react/require-default-props": "off"
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
   }
 }

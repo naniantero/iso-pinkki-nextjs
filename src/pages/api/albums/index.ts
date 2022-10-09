@@ -1,6 +1,6 @@
+import { ALBUM_QUERY_PAGE_SIZE } from '@constants';
 import { NextApiRequest, NextApiResponse } from 'next';
 import ContentfulService from '../../../services/contentful.service';
-import { ALBUM_QUERY_PAGE_SIZE } from '@constants';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const take = Number(req.query.take ?? ALBUM_QUERY_PAGE_SIZE);
@@ -16,6 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         .send(error?.response?.data);
     }
   }
+  return res.status(405);
 };
 
 export default handler;

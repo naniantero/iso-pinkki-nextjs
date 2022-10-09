@@ -1,6 +1,5 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, ReactNode } from 'react';
 import { getLocalizedDate } from '@utils';
-import { ReactNode } from 'react';
 import { Text, TextProps } from 'theme-ui';
 
 interface DateProps extends TextProps {

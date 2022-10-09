@@ -47,6 +47,7 @@ class SpotifyModel {
       console.log('INITING',this.client)
 
       const {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         body: { access_token, expires_in },
       } = await this.client.clientCredentialsGrant();
 

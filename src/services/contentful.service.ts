@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import SpotifyService from './spotify.service';
+
 const CONTENTFUL_API_URL = 'https://graphql.contentful.com/content/v1/spaces';
 
 class ContentfulModel {
