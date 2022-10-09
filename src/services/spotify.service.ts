@@ -18,7 +18,6 @@ class SpotifyModel {
    * Initializes the service, fetches the access token
    */
   async init() {
-    console.log('INITING',this.client)
     const now = DateTime.local().toUnixInteger();
     const tokenExpired = expiresAt && expiresAt <= now;
 
@@ -45,6 +44,7 @@ class SpotifyModel {
 
     try {
       console.log("We haven't stored an access token, or it has expired");
+      console.log('INITING',this.client)
 
       const {
         body: { access_token, expires_in },
