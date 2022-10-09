@@ -1,7 +1,10 @@
 // /utils/ContentfulModel.js
 
 import axios from 'axios';
+import { log } from 'next-axiom';
 import SpotifyService from './spotify.service';
+
+const logger = log.with({ scope: 'contentful' });
 
 const CONTENTFUL_API_URL = 'https://graphql.contentful.com/content/v1/spaces';
 
@@ -38,6 +41,7 @@ class ContentfulModel {
       );
       return res.data?.data;
     } catch (error) {
+      logger.error('Request to Contentful API failed');
       throw error;
     }
   }
@@ -92,6 +96,7 @@ class ContentfulModel {
         spotify,
       };
     } catch (error: any) {
+      logger.error('Get album request failed');
       throw error;
     }
   }
@@ -138,6 +143,7 @@ class ContentfulModel {
       }));
       return collection;
     } catch (error) {
+      logger.error('Get albums request failed');
       throw error;
     }
   }
@@ -164,9 +170,10 @@ class ContentfulModel {
       )) as Contentful.AlbumCollectionResponse;
 
       const collection = { ...contentfulResponse.albumCollection };
-      console.log(collection)
+      console.log(collection);
       return collection.items.map((item) => item.sys.id);
     } catch (error: any) {
+      logger.error('Get album IDs request failed');
       throw error;
     }
   }

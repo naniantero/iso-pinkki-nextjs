@@ -21,6 +21,8 @@ import { ThemeProvider } from 'theme-ui';
 import '../styles/globals.scss';
 import theme, { colors } from '../styles/theme';
 
+export { reportWebVitals } from 'next-axiom'
+
 interface PinkkiAppProps extends AppProps {
   messages: any;
   dehydratedState: any;

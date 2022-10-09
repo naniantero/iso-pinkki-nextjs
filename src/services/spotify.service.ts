@@ -1,8 +1,11 @@
 import SpotifyWebApi from 'spotify-web-api-node';
 import { DateTime } from 'luxon';
+import { log } from 'next-axiom';
 
 let accessToken: string | null = null;
 let expiresAt: number | null = null;
+
+const logger = log.with({ scope: 'spotify' });
 
 class SpotifyModel {
   client: SpotifyWebApi;
@@ -21,8 +24,6 @@ class SpotifyModel {
     const now = DateTime.local().toUnixInteger();
     const tokenExpired = expiresAt && expiresAt <= now;
 
-    if (tokenExpired) console.log('Token has expired');
-
     if (
       accessToken &&
       this.client.getAccessToken() === accessToken &&
@@ -32,17 +33,19 @@ class SpotifyModel {
     }
 
     if (accessToken && !tokenExpired) {
-      console.log(
-        "Spotify: We've stored an access token, but doesn't match the accessToken. Updating.."
+      logger.info(
+        "We've stored an access token, but doesn't match the accessToken. Updating.."
       );
       this.client.setAccessToken(accessToken as string);
       return;
     }
 
     try {
-      console.log(
-        "Spotify: We haven't stored an access token, or it has expired"
-      );
+      if (tokenExpired) {
+        logger.info('Token has expired');
+      } else {
+        logger.info("We haven't stored an access token");
+      }
       const {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         body: { access_token, expires_in },
@@ -58,11 +61,12 @@ class SpotifyModel {
         .plus({ seconds: expires_in })
         .toUnixInteger();
 
-      console.log(
+      logger.info(
         'Spotify: Access token expires at',
         DateTime.local().plus({ seconds: expires_in }).toFormat('HH:mm:ss')
       );
     } catch (e) {
+      logger.error('Whoops. Throwing error.');
       throw e;
     }
   }
