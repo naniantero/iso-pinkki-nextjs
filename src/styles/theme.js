@@ -15,12 +15,11 @@ export const colors = {
 };
 
 /**
- * sm 480
- * md 768
+ * sm 640
+ * md 960
  * lg 1024
- * xl 1440
  */
-export const breakpoints = [480, 768, 1024, 1440];
+export const breakpoints = [640, 960, 1024];
 
 const BUTTON_BASE = {
   cursor: 'pointer',

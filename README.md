@@ -18,5 +18,4 @@ Project needs all kinds of like.. top secret API keys and whatnot, so you probab
 
 Things are pretty much in progress. At least following things should be considered:
 
-* Make things more responsive (SSR)
 * Admin

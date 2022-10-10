@@ -170,7 +170,6 @@ class ContentfulModel {
       )) as Contentful.AlbumCollectionResponse;
 
       const collection = { ...contentfulResponse.albumCollection };
-      console.log(collection);
       return collection.items.map((item) => item.sys.id);
     } catch (error: any) {
       logger.error('Get album IDs request failed');

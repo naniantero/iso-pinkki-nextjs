@@ -24,17 +24,15 @@ const styles: SxStyleProp = {
   },
   featuredImage: {
     maxWidth: '100%',
-    flex: 1,
     borderRadius: 5,
     width: '100%',
-    height: '100%',
   },
   imageContainer: {
     maxWidth: ['none', 300, 480],
     marginRight: [0, 3],
     position: 'relative',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flexDirection: 'column',
     marginBottom: [3, 0],
   },

@@ -61,10 +61,11 @@ class SpotifyModel {
         .plus({ seconds: expires_in })
         .toUnixInteger();
 
-      logger.info(
-        'Spotify: Access token expires at',
-        DateTime.local().plus({ seconds: expires_in }).toFormat('HH:mm:ss')
-      );
+      logger.info('Spotify: Access token expires at', {
+        time: DateTime.local()
+          .plus({ seconds: expires_in })
+          .toFormat('HH:mm:ss'),
+      });
     } catch (e) {
       logger.error('Whoops. Throwing error.');
       throw e;
