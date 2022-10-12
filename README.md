@@ -4,10 +4,12 @@ Music collective Iso Pinkki's site. Powered by Next.js, Contentful, Redis and Sp
 ### Relies on
 
 - SSR
-- React Query (state mgmt)
+- React Query (state management)
 - Theme UI (styling)
 - Luxon (dates)
-- Next-Intl (i18n)
+- Next-intl (i18n)
+- Redis/Upstash (caching)
+- Axiom (log management and analytics)
 
 ## Getting Started
 
@@ -19,4 +21,4 @@ Project needs all kinds of like.. top secret API keys and whatnot, so you probab
 Things are pretty much in progress. At least following things should be considered:
 
 * Admin
-* Make the Redis implementation more robust
+* Make the Redis implementation more robust and try to minimize the memory use, i.e. get rid of the current JSON.stringify/parse mess
