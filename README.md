@@ -1,6 +1,6 @@
 # Iso Pinkki site project
 
-Music collective Iso Pinkki's site. Powered by Next.js, Contentful and Spotify Rest API.
+Music collective Iso Pinkki's site. Powered by Next.js, Contentful, Redis and Spotify Rest API.
 ### Relies on
 
 - SSR
@@ -19,3 +19,4 @@ Project needs all kinds of like.. top secret API keys and whatnot, so you probab
 Things are pretty much in progress. At least following things should be considered:
 
 * Admin
+* Make the Redis implementation more robust
