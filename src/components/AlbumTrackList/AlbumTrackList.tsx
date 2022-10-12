@@ -4,6 +4,7 @@ import { Box, BoxProps, IconButton, IconButtonProps } from 'theme-ui';
 import AudioPlayer from 'react-audio-player';
 import duration from 'dayjs/plugin/duration';
 import dayjs from 'dayjs';
+import { TrackProgress } from './TrackProgress';
 
 dayjs.extend(duration);
 interface Props extends BoxProps {
@@ -27,6 +28,10 @@ const commonIconButtonStyles = {
 const styles: SxStyleProp = {
   table: {
     width: '100%',
+  },
+  trackName: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
   playIcon: commonIconButtonStyles,
   stopIcon: {
@@ -68,17 +73,21 @@ const PlaybackButton: React.FC<PlaybackButtonProps> = ({
 };
 
 export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
-  const [previewTrack, setPreviewTrack] = useState<string | null>(null);
+  const [previewTrack, setPreviewTrack] = useState<string | undefined>();
+  const [secondsListened, setSecondsListened] = useState<number | undefined>();
 
   /**
    * Set preview track to null on unmount
    */
   useEffect(() => {
     return () => {
-      setPreviewTrack(null);
+      setPreviewTrack(undefined);
     };
   }, [album]);
 
+  /**
+   * Returns a length of the song in a proper format
+   */
   const getLength = (milliseconds: number) => {
     return dayjs.duration(milliseconds).format('mm:ss');
   };
@@ -88,12 +97,34 @@ export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
    * starts playing it automatically. Undefined stops the play
    */
   const onPlaybackButtonClick = (track?: SpotifyApi.TrackObjectFull) => () => {
-    setPreviewTrack(track?.preview_url ?? null);
+    setPreviewTrack(track?.preview_url ?? undefined);
+  };
+
+  /**
+   * Called every listenInterval milliseconds during playback.
+   */
+  const onTrackListen = (seconds: number) => {
+    setSecondsListened(seconds);
+  };
+
+  const handlePlayEnd = () => {
+    setSecondsListened(undefined);
+    setPreviewTrack(undefined);
   };
 
   return (
     <Box {...rest}>
-      {previewTrack && <AudioPlayer src={previewTrack} autoPlay />}
+      {previewTrack && (
+        <AudioPlayer
+          src={previewTrack}
+          autoPlay
+          onListen={onTrackListen}
+          listenInterval={1000}
+          onAbort={handlePlayEnd}
+          onEnded={handlePlayEnd}
+          onError={handlePlayEnd}
+        />
+      )}
 
       <Box as='table' sx={styles.table}>
         <tbody>
@@ -116,8 +147,11 @@ export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
                     />
                   )}
                 </Box>
-                <Box as='td' sx={styles.td}>
-                  {item.name}
+                <Box as='td' sx={{ ...styles.td, ...styles.trackName }} px={2}>
+                  <span>{item.name}</span>
+                  {previewTrack === item.preview_url && (
+                    <TrackProgress position={secondsListened} mt={1} />
+                  )}
                 </Box>
                 <Box
                   as='td'

@@ -1,7 +1,8 @@
 import React from 'react';
 import { MetaTags } from '@components/MetaTags';
 import { Heading } from '@components/Typography';
-import { Box, BoxProps, Button, Image, Text } from 'theme-ui';
+import { Box, BoxProps, Button, Text } from 'theme-ui';
+import Image from 'next/image';
 
 interface Props extends Omit<BoxProps, 'onClick'> {
   album: Contentful.Album;
@@ -71,12 +72,14 @@ export const AlbumItem: React.FC<Props> = ({ album, onClick, ...rest }) => {
       {album.featuredImage && (
         <Image
           className='featured-image'
-          sx={styles.featuredImage}
+          style={styles.featuredImage}
           src={album.featuredImage.url}
           alt={album.title}
+          height={100}
+          width={100}
         />
       )}
-      <Box sx={styles.albumContent}>
+      <Box sx={styles.albumContent} ml={2}>
         <Box sx={styles.albumTextContent}>
           <Heading as='h3' sx={styles.title}>
             {album.title}

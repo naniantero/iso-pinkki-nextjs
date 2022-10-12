@@ -11,9 +11,10 @@ import { AxiosResponse } from 'axios';
 import { useSingleAlbum } from 'hooks';
 import { GetServerSideProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
-import { Box, Divider, Image } from 'theme-ui';
+import { Box, Divider } from 'theme-ui';
 import { useAlbumIds } from '../../hooks/album.hooks';
 
 const styles: SxStyleProp = {
@@ -129,11 +130,16 @@ const SingleAlbumPage: React.FC<NextPage> = () => {
         {data && (
           <Box sx={styles.infoContainer}>
             <Box sx={styles.imageContainer}>
-              <Image
-                src={featuredSpotifyImg}
-                alt={data?.title}
-                sx={styles.featuredImage}
-              />
+              {featuredSpotifyImg && (
+                <Image
+                  className='featured-image'
+                  src={featuredSpotifyImg}
+                  alt={data?.title}
+                  style={styles.featuredImage}
+                  height={640}
+                  width={640}
+                />
+              )}
               <StreamLinks
                 album={data}
                 mt={2}

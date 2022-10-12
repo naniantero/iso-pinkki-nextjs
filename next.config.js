@@ -17,6 +17,9 @@ const nextConfig = {
     domains: [],
     localeDetection: false,
   },
+  images: {
+    domains: ['images.ctfassets.net', 'i.scdn.co'],
+  },
 };
 
 module.exports = withAxiom(nextConfig);
