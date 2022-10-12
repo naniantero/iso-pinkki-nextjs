@@ -117,10 +117,9 @@ class ContentfulModel {
           releasedAt
           featuredImage {
             ... on Asset {
-              url(transform: {width: 300, height: 300})
+              url(transform: {width: 100, height: 100})
             }
           }
-          reissue
           formats
           artist {
             ... on Artist {

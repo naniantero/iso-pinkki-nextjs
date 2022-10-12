@@ -10,7 +10,6 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Settings } from 'luxon';
 import { NextIntlProvider } from 'next-intl';
 import type { AppProps } from 'next/app';
 import NextApp from 'next/app';
@@ -26,7 +25,6 @@ export { reportWebVitals } from 'next-axiom'
 interface PinkkiAppProps extends AppProps {
   messages: any;
   dehydratedState: any;
-  locale: string;
   pageProps: {
     dehydratedState: any;
   };
@@ -36,11 +34,10 @@ interface PinkkiAppProps extends AppProps {
  * Data hydration etc. based on
  * https://dev.to/arianhamdi/react-query-v4-ssr-in-next-js-2ojj
  */
-function PinkkiApp({ Component, pageProps, messages, locale }: PinkkiAppProps) {
+function PinkkiApp({ Component, pageProps, messages }: PinkkiAppProps) {
   // This ensures that data is not shared
   // between different users and requests
   const [queryClient] = useState(() => new QueryClient());
-  Settings.defaultLocale = locale;
 
   return (
     <NextIntlProvider messages={messages}>

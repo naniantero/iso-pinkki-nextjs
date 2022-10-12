@@ -1,4 +1,5 @@
-import { DateTime } from 'luxon';
+import dayjs from "dayjs";
+
 
 /**
  * Returns ISO date in an user friendly format
@@ -10,10 +11,10 @@ export const getLocalizedDate = (
   yearOnly?: boolean
 ): string => {
   if (!date) return '';
-  let format = 'dd.MM.';
+  let format = 'DD.MM.';
 
-  if (includeYear) format = `${format}yyyy`;
-  if (yearOnly) format = 'yyyy';
+  if (includeYear) format = `${format}YYYY`;
+  if (yearOnly) format = 'YYYY';
 
-  return DateTime.fromISO(date as string).toFormat(format) ?? '';
+  return dayjs(date).format(format) ?? '';
 };

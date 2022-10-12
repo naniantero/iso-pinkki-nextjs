@@ -6,7 +6,7 @@ Music collective Iso Pinkki's site. Powered by Next.js, Contentful, Redis and Sp
 - SSR
 - React Query (state management)
 - Theme UI (styling)
-- Luxon (dates)
+- Dayjs (dates)
 - Next-intl (i18n)
 - Redis/Upstash (caching)
 - Axiom (log management and analytics)

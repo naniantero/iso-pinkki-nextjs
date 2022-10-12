@@ -1,9 +1,11 @@
 import { Icon, IconProps } from '@components/Icon';
-import { Duration } from 'luxon';
 import React, { useEffect, useState } from 'react';
 import { Box, BoxProps, IconButton, IconButtonProps } from 'theme-ui';
 import AudioPlayer from 'react-audio-player';
+import duration from 'dayjs/plugin/duration';
+import dayjs from 'dayjs';
 
+dayjs.extend(duration);
 interface Props extends BoxProps {
   album: Contentful.AlbumWithSpotify;
 }
@@ -77,8 +79,8 @@ export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
     };
   }, [album]);
 
-  const getLength = (duration: number) => {
-    return Duration.fromMillis(duration).toFormat('mm:ss');
+  const getLength = (milliseconds: number) => {
+    return dayjs.duration(milliseconds).format('mm:ss');
   };
 
   /**

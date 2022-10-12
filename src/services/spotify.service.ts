@@ -1,6 +1,6 @@
 import SpotifyWebApi from 'spotify-web-api-node';
-import { DateTime } from 'luxon';
 import { log } from 'next-axiom';
+import dayjs from 'dayjs';
 
 let accessToken: string | null = null;
 let expiresAt: number | null = null;
@@ -21,7 +21,7 @@ class SpotifyModel {
    * Initializes the service, fetches the access token
    */
   async init() {
-    const now = DateTime.local().toUnixInteger();
+    const now = dayjs().unix();
     const tokenExpired = expiresAt && expiresAt <= now;
 
     if (
@@ -57,14 +57,10 @@ class SpotifyModel {
        * Save for further use
        */
       accessToken = access_token;
-      expiresAt = DateTime.local()
-        .plus({ seconds: expires_in })
-        .toUnixInteger();
+      expiresAt = dayjs().add(expires_in, 'seconds').unix();
 
       logger.info('Spotify: Access token expires at', {
-        time: DateTime.local()
-          .plus({ seconds: expires_in })
-          .toFormat('HH:mm:ss'),
+        time: dayjs().add(expires_in, 'seconds').format('HH:mm'),
       });
     } catch (e) {
       logger.error('Whoops. Throwing error.');
