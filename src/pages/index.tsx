@@ -17,6 +17,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Button, Spinner, Text } from 'theme-ui';
 import { useAlbums } from '../hooks/album.hooks';
+import { Album, AlbumCollection } from '../types/contentful';
 
 const styles: SxStyleProp = {
   loadMoreButton: {
@@ -37,7 +38,7 @@ const IndexPage: React.FC<NextPage> = () => {
   /**
    * A helper that returns a year of a given release date
    */
-  const getReleaseYear = (album: Contentful.Album): string =>
+  const getReleaseYear = (album: Album): string =>
     getLocalizedDate(album.releasedAt, false, true);
 
   const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useAlbums();
@@ -109,7 +110,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       .get(API_ROUTES.albums, {
         params: { skip: 0, take: ALBUM_QUERY_PAGE_SIZE },
       })
-      .then((res: AxiosResponse<Contentful.AlbumCollection>) => res.data)
+      .then((res: AxiosResponse<AlbumCollection>) => res.data)
   );
 
   return {

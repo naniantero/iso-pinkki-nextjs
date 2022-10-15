@@ -3,10 +3,11 @@ import { BlankList } from '@components/BlankList';
 import { Date, Heading } from '@components/Typography';
 import React from 'react';
 import { Box } from 'theme-ui';
+import { Album } from '../../types/contentful';
 
 interface Props {
   onItemClick: (itemId: string) => void;
-  albums: Contentful.Album[];
+  albums: Album[];
   year: string;
 }
 

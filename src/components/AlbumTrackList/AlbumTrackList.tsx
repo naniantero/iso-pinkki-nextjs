@@ -1,14 +1,15 @@
 import { Icon, IconProps } from '@components/Icon';
-import React, { useEffect, useState } from 'react';
-import { Box, BoxProps, IconButton, IconButtonProps } from 'theme-ui';
-import AudioPlayer from 'react-audio-player';
-import duration from 'dayjs/plugin/duration';
 import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import React, { useEffect, useState } from 'react';
+import AudioPlayer from 'react-audio-player';
+import { Box, BoxProps, IconButton, IconButtonProps } from 'theme-ui';
+import { AlbumWithSpotify } from 'types/contentful';
 import { TrackProgress } from './TrackProgress';
 
 dayjs.extend(duration);
 interface Props extends BoxProps {
-  album: Contentful.AlbumWithSpotify;
+  album: AlbumWithSpotify;
 }
 
 interface PlaybackButtonProps extends IconButtonProps {

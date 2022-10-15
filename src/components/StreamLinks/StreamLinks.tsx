@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box, Image, Link, BoxProps } from 'theme-ui';
+import { AlbumWithSpotify } from '../../types/contentful';
 
 interface Props extends BoxProps {
-  album: Contentful.AlbumWithSpotify;
+  album: AlbumWithSpotify;
 }
 
 interface StreamLinkProps {

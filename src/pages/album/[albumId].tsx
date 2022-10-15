@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import { Box, Divider } from 'theme-ui';
 import { useAlbumIds } from '../../hooks/album.hooks';
+import { AlbumCollection } from '../../types/contentful';
 
 const styles: SxStyleProp = {
   infoContainer: {
@@ -192,7 +193,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   await queryClient.prefetchQuery([QUERY_KEYS.singleAlbum, albumId], () =>
     api
       .get(API_ROUTES.singleAlbum.replace('{albumId}', albumId as string))
-      .then((res: AxiosResponse<Contentful.AlbumCollection>) => res.data)
+      .then((res: AxiosResponse<AlbumCollection>) => res.data)
   );
 
   /**
@@ -201,7 +202,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   await queryClient.prefetchQuery([QUERY_KEYS.albumIds], () =>
     api
       .get(API_ROUTES.albumIds)
-      .then((res: AxiosResponse<Contentful.AlbumCollection>) => res.data)
+      .then((res: AxiosResponse<AlbumCollection>) => res.data)
   );
 
   return {

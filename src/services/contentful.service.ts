@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { log } from 'next-axiom';
 import SpotifyService from './spotify.service';
+import { AlbumCollectionResponse, AlbumResponse } from '../types/contentful';
 
 const logger = log.with({ scope: 'contentful' });
 
@@ -24,7 +25,7 @@ class ContentfulModel {
    */
   async request(
     query: any
-  ): Promise<Contentful.AlbumCollectionResponse | Contentful.AlbumResponse> {
+  ): Promise<AlbumCollectionResponse | AlbumResponse> {
     const spaceId = `${process.env.CONTENTFUL_SPACE_ID}`;
     const config = {
       headers: {
@@ -80,7 +81,7 @@ class ContentfulModel {
     try {
       const contentfulResponse = (await this.request(
         graphQlQuery
-      )) as Contentful.AlbumResponse;
+      )) as AlbumResponse;
 
       const {
         album: { spotifyId },
@@ -133,7 +134,7 @@ class ContentfulModel {
     try {
       const contentfulResponse = (await this.request(
         graphQlQuery
-      )) as Contentful.AlbumCollectionResponse;
+      )) as AlbumCollectionResponse;
 
       const collection = { ...contentfulResponse.albumCollection };
       collection.items = collection.items.map((item) => ({
@@ -166,7 +167,7 @@ class ContentfulModel {
     try {
       const contentfulResponse = (await this.request(
         graphQlQuery
-      )) as Contentful.AlbumCollectionResponse;
+      )) as AlbumCollectionResponse;
 
       const collection = { ...contentfulResponse.albumCollection };
       return collection.items.map((item) => item.sys.id);

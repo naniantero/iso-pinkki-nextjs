@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box, BoxProps } from 'theme-ui';
 import { useTranslations } from 'next-intl';
+import { Album } from 'types/contentful';
 
 interface Props extends BoxProps {
-  album: Contentful.Album;
+  album: Album;
   hideFormats?: boolean;
   hideType?: boolean;
 }

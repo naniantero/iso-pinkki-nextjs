@@ -3,9 +3,10 @@ import { MetaTags } from '@components/MetaTags';
 import { Heading } from '@components/Typography';
 import { Box, BoxProps, Button, Text } from 'theme-ui';
 import Image from 'next/image';
+import { Album } from 'types/contentful';
 
 interface Props extends Omit<BoxProps, 'onClick'> {
-  album: Contentful.Album;
+  album: Album;
   onClick: (albumId: string) => void;
 }
 

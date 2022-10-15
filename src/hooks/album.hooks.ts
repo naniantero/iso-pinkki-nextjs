@@ -12,6 +12,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
+import { AlbumWithSpotify, AlbumCollection, Album } from 'types/contentful';
 import ToastService from '../services/toast.service';
 
 /**
@@ -21,7 +22,7 @@ import ToastService from '../services/toast.service';
 /**
  * Fetches all albums using infinite query
  */
-export const useAlbums = (): UseInfiniteQueryResult<Contentful.AlbumCollection> => {
+export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
   return useInfiniteQuery(
     [QUERY_KEYS.albums],
     async ({ pageParam = 0 }) => {
@@ -32,7 +33,7 @@ export const useAlbums = (): UseInfiniteQueryResult<Contentful.AlbumCollection> 
             skip: pageParam * ALBUM_QUERY_PAGE_SIZE,
           },
         })
-      ).data as Contentful.AlbumCollection;
+      ).data as AlbumCollection;
 
       return res;
     },
@@ -53,13 +54,13 @@ export const useAlbums = (): UseInfiniteQueryResult<Contentful.AlbumCollection> 
 /**
  * Makes a single album query using an albumId
  */
-export const useSingleAlbum = (albumId: string): UseQueryResult<Contentful.AlbumWithSpotify> => {
+export const useSingleAlbum = (albumId: string): UseQueryResult<AlbumWithSpotify> => {
   return useQuery(
     [QUERY_KEYS.singleAlbum, albumId],
     () =>
       api
         .get(API_ROUTES.singleAlbum.replace('{albumId}', albumId as string))
-        .then((res: AxiosResponse<Contentful.AlbumWithSpotify>) => res.data),
+        .then((res: AxiosResponse<AlbumWithSpotify>) => res.data),
     {
       staleTime: DEFAULT_STALE_TIME,
       onError: () => {
@@ -78,7 +79,7 @@ export const useAlbumIds = (): UseQueryResult<string[]> => {
     () =>
       api
         .get(API_ROUTES.albumIds)
-        .then((res: AxiosResponse<Contentful.Album>) => res.data),
+        .then((res: AxiosResponse<Album>) => res.data),
     {
       staleTime: DEFAULT_STALE_TIME,
     }
