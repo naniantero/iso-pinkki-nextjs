@@ -43,11 +43,11 @@ const styles: SxStyleProp = {
 
 const StreamLink: React.FC<StreamLinkProps> = ({ icon, href }) => {
   return (
-    <Box sx={styles.iconContainer}>
-      <Link href={href} target='_blank'>
+    <Link href={href} target='_blank'>
+      <Box sx={styles.iconContainer}>
         <Image sx={styles.icon} src={`/icons/${icon}.svg`} alt={icon} />
-      </Link>
-    </Box>
+      </Box>
+    </Link>
   );
 };
 export const StreamLinks: React.FC<Props> = ({ album, sx, ...rest }) => {
