@@ -4,12 +4,13 @@ import duration from 'dayjs/plugin/duration';
 import React, { useEffect, useState } from 'react';
 import AudioPlayer from 'react-audio-player';
 import { Box, BoxProps, IconButton, IconButtonProps } from 'theme-ui';
-import { AlbumWithSpotify } from 'types/contentful';
 import { TrackProgress } from './TrackProgress';
+import { Album } from '../../types/contentful';
+import { AlbumMetaData } from '../../types/spotify';
 
 dayjs.extend(duration);
 interface Props extends BoxProps {
-  album: AlbumWithSpotify;
+  album: Album & AlbumMetaData;
 }
 
 interface PlaybackButtonProps extends IconButtonProps {

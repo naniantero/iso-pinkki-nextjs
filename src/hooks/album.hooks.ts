@@ -2,17 +2,18 @@ import {
   ALBUM_QUERY_PAGE_SIZE,
   API_ROUTES,
   DEFAULT_STALE_TIME,
-  QUERY_KEYS,
+  QUERY_KEYS
 } from '@constants';
 import { api } from '@services/api';
 import {
   useInfiniteQuery,
   UseInfiniteQueryResult,
   useQuery,
-  UseQueryResult,
+  UseQueryResult
 } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
-import { AlbumWithSpotify, AlbumCollection, Album } from 'types/contentful';
+import { Album, AlbumCollection, Type } from 'types/contentful';
+import { AlbumMetaData } from 'types/spotify';
 import ToastService from '../services/toast.service';
 
 /**
@@ -22,15 +23,21 @@ import ToastService from '../services/toast.service';
 /**
  * Fetches all albums using infinite query
  */
-export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
+export const useAlbums = (
+  albumTypes: Type[]
+): UseInfiniteQueryResult<AlbumCollection> => {
+  // Joins album types array which will then be used in query key array
+  const albumTypesStr = albumTypes.join('|');
+
   return useInfiniteQuery(
-    [QUERY_KEYS.albums],
+    [QUERY_KEYS.albums, albumTypesStr],
     async ({ pageParam = 0 }) => {
       const res = (
         await api.get(API_ROUTES.albums, {
           params: {
             take: ALBUM_QUERY_PAGE_SIZE,
             skip: pageParam * ALBUM_QUERY_PAGE_SIZE,
+            albumTypes: albumTypesStr,
           },
         })
       ).data as AlbumCollection;
@@ -54,13 +61,15 @@ export const useAlbums = (): UseInfiniteQueryResult<AlbumCollection> => {
 /**
  * Makes a single album query using an albumId
  */
-export const useSingleAlbum = (albumId: string): UseQueryResult<AlbumWithSpotify> => {
+export const useSingleAlbum = (
+  albumId: string
+): UseQueryResult<Album & AlbumMetaData> => {
   return useQuery(
     [QUERY_KEYS.singleAlbum, albumId],
     () =>
       api
         .get(API_ROUTES.singleAlbum.replace('{albumId}', albumId as string))
-        .then((res: AxiosResponse<AlbumWithSpotify>) => res.data),
+        .then((res: AxiosResponse<Album & AlbumMetaData>) => res.data),
     {
       staleTime: DEFAULT_STALE_TIME,
       onError: () => {

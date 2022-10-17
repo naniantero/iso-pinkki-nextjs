@@ -14,9 +14,7 @@
   "pages": {
     "index": {
       "title": "Julkaisut",
-      "fetchingMore": "Siirrytään ajassa taaksepäin..",
-      "loadMore": "Siirry ajassa taaksepäin",
-      "startOfTimeline": "Big bang"
+      "noResults": "Hakuehdoilla ei löytynyt julkaisuja"
     },
     "singleAlbum": {
       "catalogId": "Katalogi #",
@@ -28,6 +26,18 @@
     }
   },
   "components": {
+    "timelineSpinner": {
+      "fetchingMore": "Siirrytään ajassa taaksepäin..",
+      "fetchMore": "Siirry ajassa taaksepäin",
+      "fetching": "Lataillaan.."
+    },
+    "albumFilters": {
+      "type": {
+        "album": "Albumit",
+        "single": "Singlet",
+        "ep": "EP:t"
+      }
+    },
     "pagination": {
       "next": "Seuraava",
       "previous": "Edellinen"

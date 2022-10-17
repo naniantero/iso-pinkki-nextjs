@@ -8,7 +8,9 @@ type IconType =
   | 'spotify'
   | 'arrow_back_ios'
   | 'play_arrow'
-  | 'stop';
+  | 'stop'
+  | 'visibility'
+  | 'visibility_off';
 
 const narrowIcons = ['arrow_back_ios'] as IconType[];
 export interface IconProps extends TextProps {

@@ -3,7 +3,11 @@
 import axios from 'axios';
 import { log } from 'next-axiom';
 import SpotifyService from './spotify.service';
-import { AlbumCollectionResponse, AlbumResponse } from '../types/contentful';
+import {
+  AlbumCollectionResponse,
+  AlbumResponse,
+  Type,
+} from '../types/contentful';
 
 const logger = log.with({ scope: 'contentful' });
 
@@ -23,9 +27,7 @@ class ContentfulModel {
    * Makes the Contentful API request using the access token and
    * space ID provided in envs
    */
-  async request(
-    query: any
-  ): Promise<AlbumCollectionResponse | AlbumResponse> {
+  async request(query: any): Promise<AlbumCollectionResponse | AlbumResponse> {
     const spaceId = `${process.env.CONTENTFUL_SPACE_ID}`;
     const config = {
       headers: {
@@ -105,9 +107,9 @@ class ContentfulModel {
   /**
    * Returns a paginated list of albums. Used on index page timeline.
    */
-  async getAlbums(take: number, skip: number) {
+  async getAlbums(take: number, skip: number, albumTypes: Type[]) {
     const graphQlQuery = `{
-      albumCollection(limit: ${take}, skip: ${skip}, order: releasedAt_DESC) {
+      albumCollection(limit: ${take}, skip: ${skip}, order: releasedAt_DESC, where: { type_in: ${JSON.stringify(albumTypes)} }) {
         total
         items {
           title

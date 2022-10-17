@@ -1,10 +1,12 @@
+import { AlbumFilters } from '@components/AlbumFilters';
 import { CommonLayout } from '@components/Layout';
 import { Timeline } from '@components/Timeline/Timeline';
+import TimelineSpinner from '@components/Timeline/TimelineSpinner';
 import {
   ALBUM_QUERY_PAGE_SIZE,
   API_ROUTES,
   QUERY_KEYS,
-  ROUTES,
+  ROUTES
 } from '@constants';
 import { api } from '@services/api';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
@@ -13,25 +15,25 @@ import { AxiosResponse } from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Button, Spinner, Text } from 'theme-ui';
+import { Box, Divider } from 'theme-ui';
+import { Album, AlbumCollection, Type } from 'types/contentful';
 import { useAlbums } from '../hooks/album.hooks';
-import { Album, AlbumCollection } from '../types/contentful';
 
 const styles: SxStyleProp = {
-  loadMoreButton: {
+  noResults: {
     display: 'flex',
-    alignItems: 'center',
-    margin: 'auto',
-    minHeight: 80,
-    backgroundColor: 'transparent',
-    color: 'text',
-  },
-};
+    justifyContent: 'center',
+  }
+}
+
+const INITIAL_ALBUM_TYPES = [Type.Album, Type.Ep, Type.Single];
 
 const IndexPage: React.FC<NextPage> = () => {
   const t = useTranslations('pages.index');
+  const [selectedTypes, setSelectedTypes] =
+    useState<Type[]>(INITIAL_ALBUM_TYPES);
   const router = useRouter();
   const { ref, inView } = useInView();
 
@@ -41,7 +43,8 @@ const IndexPage: React.FC<NextPage> = () => {
   const getReleaseYear = (album: Album): string =>
     getLocalizedDate(album.releasedAt, false, true);
 
-  const { data, isFetchingNextPage, fetchNextPage, hasNextPage } = useAlbums();
+  const { data, isFetchingNextPage, fetchNextPage, hasNextPage, isFetching } =
+    useAlbums(selectedTypes);
 
   /**
    * Returns a memoized array of releases sorted by the release year
@@ -71,8 +74,17 @@ const IndexPage: React.FC<NextPage> = () => {
     router.push(ROUTES.singleAlbum.replace('{albumId}', albumId));
   };
 
+  /**
+   * Fires upon format filter change
+   */
+  const onFilterChange = (types: Type[]) => {
+    setSelectedTypes(types);
+  };
+
   return (
     <CommonLayout title={t('title')}>
+      <AlbumFilters types={selectedTypes} onChange={onFilterChange} mx='auto' />
+      <Divider />
       {releaseYears?.map((obj) => {
         return (
           <Timeline
@@ -83,19 +95,20 @@ const IndexPage: React.FC<NextPage> = () => {
           />
         );
       })}
+      {/* Used when fetching the next page (infinite query) */}
+      <TimelineSpinner
+        containerRef={ref}
+        isLoading={!!isFetchingNextPage || !!hasNextPage}
+        text={isFetchingNextPage ? 'fetchingMore' : 'fetchMore'}
+      />
 
-      {releaseYears?.length && hasNextPage && (
-        <Button
-          onClick={() => fetchNextPage()}
-          ref={ref}
-          sx={styles.loadMoreButton}
-          disabled={isFetchingNextPage}
-        >
-          {isFetchingNextPage && <Spinner />}
-          <Text ml={2}>
-            {isFetchingNextPage ? t('fetchingMore') : t('loadMore')}
-          </Text>
-        </Button>
+      {/* Used when fetching filtered data */}
+      <TimelineSpinner
+        isLoading={isFetching && !isFetchingNextPage}
+        text='fetching'
+      />
+      {!isFetching && !releaseYears?.length && (
+        <Box sx={styles.noResults}>{t('noResults')}</Box>
       )}
     </CommonLayout>
   );
@@ -103,12 +116,13 @@ const IndexPage: React.FC<NextPage> = () => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
+  const albumTypes = INITIAL_ALBUM_TYPES.join('|');
 
   // prefetch data on the server
-  await queryClient.prefetchInfiniteQuery([QUERY_KEYS.albums], () =>
+  await queryClient.prefetchInfiniteQuery([QUERY_KEYS.albums, albumTypes], () =>
     api
       .get(API_ROUTES.albums, {
-        params: { skip: 0, take: ALBUM_QUERY_PAGE_SIZE },
+        params: { skip: 0, take: ALBUM_QUERY_PAGE_SIZE, albumTypes },
       })
       .then((res: AxiosResponse<AlbumCollection>) => res.data)
   );

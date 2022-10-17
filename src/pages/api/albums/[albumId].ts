@@ -3,14 +3,15 @@ import RedisService from '@services/redis.service';
 import withRedis from 'middleware/redis.middleware';
 import withSpotify from 'middleware/spotify.middleware';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { AlbumWithSpotify } from '../../../types/contentful';
+import { Album } from 'types/contentful';
+import { AlbumMetaData } from 'types/spotify';
 
 /**
  * Fetches an album by ID
  */
 const handler = async (
   req: NextApiRequest,
-  res: NextApiResponse<AlbumWithSpotify>
+  res: NextApiResponse<Album & AlbumMetaData>
 ) => {
   const {
     query: { albumId },

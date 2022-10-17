@@ -36,13 +36,6 @@ export interface Album {
   spotifyId?: string;
 }
 
-export interface AlbumWithSpotify extends Album {
-  spotify: {
-    album: SpotifyApi.SingleAlbumResponse;
-    tracks: SpotifyApi.MultipleTracksResponse;
-  } | null;
-}
-
 export interface AlbumArtist {
   name: string;
 }
@@ -54,6 +47,7 @@ export interface FeaturedImage {
 export enum Format {
   CD = 'cd',
   Digital = 'digital',
+  Vinyl = 'vinyl',
 }
 
 export interface Sys {
