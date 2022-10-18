@@ -32,10 +32,13 @@ export const Date: FC<DateProps> = ({
   return (
     <Text
       sx={{ ...styles.container, ...sx }}
+      as='span'
       {...rest}
       suppressHydrationWarning
     >
-      <span className='children'>{children}</span>
+      <Text as='span' className='children'>
+        {children}
+      </Text>
       {prettifiedDate}
     </Text>
   );

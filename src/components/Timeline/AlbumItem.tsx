@@ -1,8 +1,8 @@
-import React from 'react';
 import { MetaTags } from '@components/MetaTags';
 import { Heading } from '@components/Typography';
-import { Box, BoxProps, Button, Text } from 'theme-ui';
 import Image from 'next/image';
+import React from 'react';
+import { Box, BoxProps, Button, Text } from 'theme-ui';
 import { Album } from 'types/contentful';
 
 interface Props extends Omit<BoxProps, 'onClick'> {
@@ -45,7 +45,7 @@ const styles: SxStyleProp = {
   albumContent: {
     display: 'flex',
     alignItems: ['flex-start', 'center'],
-    justifyContent: 'space-between',
+    justifyContent: ['center', 'space-between'],
     width: '100%',
     flexDirection: ['column', 'row'],
   },

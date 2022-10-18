@@ -140,7 +140,7 @@ const theme = {
       },
     },
     default: {
-      fontSize: [0, 2],
+      fontSize: [1, 2],
     },
   },
   styles: {

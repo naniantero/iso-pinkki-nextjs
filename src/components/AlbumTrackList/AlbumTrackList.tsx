@@ -39,6 +39,10 @@ const styles: SxStyleProp = {
   stopIcon: {
     ...commonIconButtonStyles,
     backgroundColor: 'secondary',
+    fontSize: 32,
+    minWidth: 40,
+    height: 40,
+    borderRadius: 40,
   },
   tr: {
     display: 'flex',
@@ -50,6 +54,13 @@ const styles: SxStyleProp = {
       backgroundColor: 'grey10',
       transition: 'background-color 0.25s ease-in',
     },
+  },
+  currentlyPlaying: {
+    padding: 2,
+    border: '1px solid',
+    borderColor: 'grey9',
+    marginTop: 2,
+    marginBottom: 2,
   },
   td: {
     flex: 1,
@@ -130,41 +141,56 @@ export const AlbumTrackList: React.FC<Props> = ({ album, ...rest }) => {
 
       <Box as='table' sx={styles.table}>
         <tbody>
-          {album.spotify?.tracks?.tracks.map((item) => (
-            <React.Fragment key={item.name}>
-              <Box as='tr' sx={styles.tr}>
-                <Box as='td' sx={{ ...styles.td, maxWidth: 32 }}>
-                  {previewTrack !== item.preview_url && (
-                    <PlaybackButton
-                      onClick={onPlaybackButtonClick(item)}
-                      icon='play_arrow'
-                    />
-                  )}
-                  {previewTrack === item.preview_url && (
-                    <PlaybackButton
-                      onClick={onPlaybackButtonClick()}
-                      icon='stop'
-                      iconColor='white'
-                      sx={styles.stopIcon}
-                    />
-                  )}
-                </Box>
-                <Box as='td' sx={{ ...styles.td, ...styles.trackName }} px={2}>
-                  <span>{item.name}</span>
-                  {previewTrack === item.preview_url && (
-                    <TrackProgress position={secondsListened} mt={1} />
-                  )}
-                </Box>
+          {album.spotify?.tracks?.tracks.map((item) => {
+            const isCurrentlyPlaying = previewTrack === item.preview_url;
+
+            return (
+              <React.Fragment key={item.name}>
                 <Box
-                  as='td'
-                  sx={{ ...styles.td, maxWidth: 64 }}
-                  suppressHydrationWarning
+                  as='tr'
+                  sx={
+                    isCurrentlyPlaying
+                      ? { ...styles.tr, ...styles.currentlyPlaying }
+                      : styles.tr
+                  }
                 >
-                  {getLength(item.duration_ms)}
+                  <Box as='td' sx={{ ...styles.td, maxWidth: 32 }}>
+                    {!isCurrentlyPlaying && (
+                      <PlaybackButton
+                        onClick={onPlaybackButtonClick(item)}
+                        icon='play_arrow'
+                      />
+                    )}
+                    {isCurrentlyPlaying && (
+                      <PlaybackButton
+                        onClick={onPlaybackButtonClick()}
+                        icon='stop'
+                        iconColor='white'
+                        sx={styles.stopIcon}
+                      />
+                    )}
+                  </Box>
+                  <Box
+                    as='td'
+                    sx={{ ...styles.td, ...styles.trackName }}
+                    px={isCurrentlyPlaying ? 3 : 2}
+                  >
+                    <span>{item.name}</span>
+                    {isCurrentlyPlaying && (
+                      <TrackProgress position={secondsListened} mt='8px' />
+                    )}
+                  </Box>
+                  <Box
+                    as='td'
+                    sx={{ ...styles.td, maxWidth: 64 }}
+                    suppressHydrationWarning
+                  >
+                    {getLength(item.duration_ms)}
+                  </Box>
                 </Box>
-              </Box>
-            </React.Fragment>
-          ))}
+              </React.Fragment>
+            );
+          })}
         </tbody>
       </Box>
     </Box>

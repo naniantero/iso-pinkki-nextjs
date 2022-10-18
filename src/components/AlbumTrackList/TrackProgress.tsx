@@ -7,7 +7,7 @@ interface Props extends BoxProps {
 
 const styles: SxStyleProp = {
   progressBarContainer: {
-    height: 8,
+    height:12,
     backgroundColor: 'grey9',
     width: '100%',
     borderRadius: 4,
@@ -18,7 +18,7 @@ const styles: SxStyleProp = {
   },
   progressBar: {
     backgroundColor: 'secondary',
-    height: 4,
+    height: 6,
     borderRadius: 4,
   },
 };
